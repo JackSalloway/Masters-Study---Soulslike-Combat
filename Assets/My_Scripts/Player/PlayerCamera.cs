@@ -8,8 +8,8 @@ public class PlayerCamera : MonoBehaviour
     public GameObject enemy; // Variable assigned to the enemy game object. Assigned in the inspection window
 
     // Private Variables
-    public float mouseSensitivity; // Variable for storing how sensitive the mouse movement will be
-    public float rotationSmoothTime = 0.12f; // Variable used for smoothing camera rotation
+    [SerializeField] private float mouseSensitivity; // Variable for storing how sensitive the mouse movement will be
+    private float rotationSmoothTime = 0.12f; // Variable used for smoothing camera rotation
     private float yaw = 0f; // Variable to store the value of cameras yaw rotation
     private float pitch = 0f; // Variable to store the value of the cameras pitch rotation
     private float minYAngle = -40f; // Variable to prevent the user from rotating the camera too far down
