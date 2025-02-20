@@ -48,8 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move player forward while rolling and prevent any input while rolling
         if (animator.GetBool("isRolling") == true) {
-            // Move the transform component towards forwards locally
-            transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self);
+            transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self); // Move the player forward 1 unit on its local space
             return; // Early return to prevent any further inputs until the roll animation is over
         };
 
