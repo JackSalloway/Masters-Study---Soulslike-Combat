@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator.GetBool("isRolling") == true) {
             // Move the transform component towards forwards locally
             transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self);
-            return; // Early to prevent any further inputs until the roll animation is over
+            return; // Early return to prevent any further inputs until the roll animation is over
         };
 
         // Update animation variable value
