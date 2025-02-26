@@ -12,5 +12,5 @@ public class PlayerParry : MonoBehaviour
     }
 
     // Method that sets the isParrying animator parameter to false when called. Will be called toward the end of the parry animation using keyframe events
-    void EndParry() => animator.SetBool("IsParrying", false);
+    void EndParry() => animator.SetBool("isParrying", false);
 }
