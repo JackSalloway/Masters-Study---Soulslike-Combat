@@ -7,6 +7,11 @@ public class TextAlert : MonoBehaviour
     
     private string actionType; // String variable used to discern if the action was a dodge or a parry
 
+    void Update()
+    {
+        alertText.transform.forward = Camera.main.transform.forward; // Make the text rotate with the camera
+    }
+
     // Method for setting the text value of the TMP object to "!" when the player performs a successful dodge or parry 
     public void AlertPlayer(string action)
     {
