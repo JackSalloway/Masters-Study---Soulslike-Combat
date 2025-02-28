@@ -23,13 +23,13 @@ public class WeaponDamage : MonoBehaviour
                 enemy.poise -= 1000; // Deal a very large amount of poise damage to the enemy
                 enemy.poiseBroken = true; // Set poiseBroken variable to true to start the timer for resetting poise
                 enemy.animator.SetBool("stanceBroken", true); // Trigger the stance broken animation
-                alertText.SetText("Attack Parried!"); // Update TMP text to let player know they parried successfully
+                alertText.AlertPlayer("Parry"); // Update TMP text to let player know they parried successfully
                 return; // Early return to prevent any more code being ran
             };
 
             // Check if the players iframes are currently active. If false: deal damage to the player. If true: print a message to the console
             if (playerMovement.invulnerabilityFramesActive == false) player.DamagePlayer(damage); // Make the player take damage!
-            else alertText.SetText("Attack Dodged!"); // Update TMP text to let player know they dodged successfully
+            else alertText.AlertPlayer("Dodge"); // Update TMP text to let player know they dodged successfully
         }
     }
 }
