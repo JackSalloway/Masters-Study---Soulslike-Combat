@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // public Animator animator; // Variable assigned to the player animator controller. Assigned in the inspection window
+
+// ----- LEGACY CODE ----- 
+
+// public Animator animator; // Variable assigned to the player animator controller. Assigned in the inspection window
     // public PlayerStamina playerStats; // Variable assigned to PlayerStamina script. Assigned in the inspection window
     // public PlayerMovement playerMovement; // Variable assigned to PlayerMovement script. Assigned in the inspection window
     // public float weaponDamage; // Variable that specifies how much damage the weapon deals. Assigned in the inspection window
