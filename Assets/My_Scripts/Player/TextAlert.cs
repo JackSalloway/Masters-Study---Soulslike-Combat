@@ -4,7 +4,7 @@ using TMPro;
 public class TextAlert : MonoBehaviour
 {
     public TextMeshPro alertText; // Variable assigned to the TMP object above the player character mesh.
-    public string actionType = null; // String variable used to discern if the action was a dodge or a parry
+    public string actionType = ""; // String variable used to discern if the action was a dodge or a parry
 
     private float textTimer = 0; // Variable used to reset the text value of the TMP object after 3 seconds
 
@@ -27,7 +27,7 @@ public class TextAlert : MonoBehaviour
     // Method for reseting variable values to their original values
     private void ResetText() {
         alertText.SetText(""); // Set the text value to an empty string
-        actionType = null; // Set the action type to null
+        actionType = ""; // Set the action type to null
         textTimer = 0; // Set the timer value back to zero
     }
 }

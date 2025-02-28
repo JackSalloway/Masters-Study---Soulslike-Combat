@@ -13,13 +13,21 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void Update()
-    {
-        if (textAlert.actionType == null) return; // Early return if the player has yet to perform a successful dodge or parry
+    {   
+        // Check to simulate closing the input field
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            inputField.gameObject.SetActive(false); // Disable the input field when the game starts
+            isTyping = false;
+        }
+
+        if (textAlert.actionType == "") return; // Early return if the player has yet to perform a successful dodge or parry
 
         // Check if the player clicks the left mouse button down and is not already typing in the input field
         if (Input.GetMouseButtonDown(0) && isTyping == false)
         {
             inputField.gameObject.SetActive(true); // Enable the input field
+            isTyping = true;
         }
     }
 
