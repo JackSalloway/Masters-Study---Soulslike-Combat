@@ -1,7 +1,30 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private TextAlert textAlert; // Variable assigned to the TextAlert script component
+    [SerializeField] private TMP_InputField inputField; // Variable assigned to the input field game object in the canvas
+    private bool isTyping = false; // Boolean used to track wether the player is typing or not
+
+    void Start()
+    {
+        inputField.gameObject.SetActive(false); // Disable the input field when the game starts
+    }
+
+    void Update()
+    {
+        if (textAlert.actionType == null) return; // Early return if the player has yet to perform a successful dodge or parry
+
+        // Check if the player clicks the left mouse button down and is not already typing in the input field
+        if (Input.GetMouseButtonDown(0) && isTyping == false)
+        {
+            inputField.gameObject.SetActive(true);
+        }
+    }
+
+    
+}
 
 // ----- LEGACY CODE ----- 
 
@@ -58,4 +81,4 @@ public class PlayerAttack : MonoBehaviour
     //     playerMovement.allowInput = true; // Re-enable movement inputs after the attack animation is finished
     //     weaponCollider.enabled = false; // Disable the weapon collider to prevent it dealing damage without being swung
     // }
-}
+
