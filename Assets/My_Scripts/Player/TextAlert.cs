@@ -7,7 +7,7 @@ public class TextAlert : MonoBehaviour
 
     // Method for setting the text value of the TMP object to the provided string
     // String examples: "", "Parried!", "Dodged!" 
-    void SetText(string text)
+    public void SetText(string text)
     {
         alertText.SetText(text);
     }
