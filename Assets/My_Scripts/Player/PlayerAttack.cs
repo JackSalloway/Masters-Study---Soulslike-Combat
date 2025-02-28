@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isTyping == false)
         {
             inputField.gameObject.SetActive(true); // Enable the input field
-            isTyping = true;
+            isTyping = true; // Set isTyping to true to prevent this code being spammed
         }
     }
 
