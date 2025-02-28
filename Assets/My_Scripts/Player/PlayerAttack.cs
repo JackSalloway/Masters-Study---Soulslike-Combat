@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
         // Check if the player clicks the left mouse button down and is not already typing in the input field
         if (Input.GetMouseButtonDown(0) && isTyping == false)
         {
-            inputField.gameObject.SetActive(true);
+            inputField.gameObject.SetActive(true); // Enable the input field
         }
     }
 
