@@ -28,6 +28,6 @@ public class TextAlert : MonoBehaviour
     private void ResetText() {
         alertText.SetText(""); // Set the text value to an empty string
         actionType = null; // Set the action type to null
-        textTimer = 0;
+        textTimer = 0; // Set the timer value back to zero
     }
 }
