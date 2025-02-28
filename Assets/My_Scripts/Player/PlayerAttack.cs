@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private TextAlert textAlert; // Variable assigned to the TextAlert script component
     [SerializeField] private TMP_InputField inputField; // Variable assigned to the input field game object in the canvas
+    [SerializeField] private PlayerMovement playerMovement; // Variable assigned to the PlayerMovement script component
     private bool isTyping = false; // Boolean used to track wether the player is typing or not
 
     void Start()
@@ -27,6 +28,9 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isTyping == false)
         {
             inputField.gameObject.SetActive(true); // Enable the input field
+            inputField.Select(); // Focus the input field
+            playerMovement.allowInput = false; // Disable player movement inputs
+            playerMovement.ResetMovementInputs(); // Reset vertical and horizontal movement values to remove any residual movement
             isTyping = true; // Set isTyping to true to prevent this code being spammed
         }
     }
