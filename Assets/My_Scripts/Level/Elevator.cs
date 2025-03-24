@@ -31,8 +31,6 @@ public class Elevator : MonoBehaviour
     {
         // Check if the plate isn't lowered and if the player has stood on it, lower it if so
         if (!plateIsLowered && plateShouldMove) LowerPlate();
-        // Call the MoveElevator method when the plate is fully lowered.
-        if (plateIsLowered) MoveElevator();
     }
 
     // OnTirggerEnter triggers when the object this code is assigned to collides with another collider
