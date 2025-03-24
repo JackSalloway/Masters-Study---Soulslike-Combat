@@ -2242,7 +2242,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -5577,8 +5577,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d24c5cf9b23de4392ae634a0cbfdf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressurePlate: {fileID: 0}
-  pressurePlateCollider: {fileID: 1519681201}
+  elevatorAtBottom: 1
+  elevatorSpeed: 1
+  elevatorShouldMove: 0
+  elevatorBottomPosition: {x: 0, y: 0, z: 0}
+  elevatorTopPosition: {x: 0, y: 0, z: 0}
+  lerpProgress: 0
+  plate: {fileID: 709668384}
+  plateCollider: {fileID: 1519681201}
+  plateStoodOn: 0
+  plateShouldMove: 0
+  plateIsLowered: 0
+  plateTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1529142016
 GameObject:
   m_ObjectHideFlags: 0
