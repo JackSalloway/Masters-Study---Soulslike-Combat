@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {   
+    [Header("Elevator Variables")]
+    [SerializeField] private bool elevatorAtBottom = true; // Variable used to track where the elevator is
+    [SerializeField] private float elevatorSpeed; // Variable used to set the speed the elevator moves at
+    [SerializeField] private Vector3 elevatorBottomPosition; // Variable used to store the bottom position of the elevator
+    [SerializeField] private Vector3 elevatorTopPosition; // Variable used to store the top position of the elevator
+    [SerializeField] private float lerpProgress = 0; // Variable used to track linear interpolation progress
+
     [Header("Pressure Plate Variables")]
     [SerializeField] private GameObject plate; // Variable assigned to the elevator pressure plate game object
     [SerializeField] private Collider plateCollider; // Variable assigned to the box collider component above the elevator pressure plate
@@ -10,11 +17,22 @@ public class Elevator : MonoBehaviour
     [SerializeField] private bool plateIsLowered = false; // Variable to check if the pressure plate has been lowered
     [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the plate
 
+    // Start is called once when the script is first ran
+    private void Start()
+    {
+        // Assign the bottom position of the Elevator (default value)
+        elevatorBottomPosition = transform.position;
+        // Assign the top position of the elvator (default position but 23 units higher)
+        elevatorTopPosition = new Vector3(transform.position.x, transform.position.y + 23, transform.position.z);
+    }
+
     // Update is called once per frame
     private void Update()
     {
         // Check if the plate isn't lowered and if the player has stood on it, lower it if so
         if (!plateIsLowered && plateShouldMove) LowerPlate();
+        // Call the MoveElevator method when the plate is fully lowered.
+        if (plateIsLowered) MoveElevator();
     }
 
     // OnTirggerEnter triggers when the object this code is assigned to collides with another collider
@@ -45,6 +63,27 @@ public class Elevator : MonoBehaviour
         {
             plateShouldMove = false;
             plateIsLowered = true;
+        }
+    }
+
+    // Method to move the elevator up or down depending on its current position
+    private void MoveElevator()
+    {
+        // Check if the elevator is at the bottom or the top of the shaft
+        if (elevatorAtBottom) 
+        {   
+            // Increment linear interpolation progress
+            lerpProgress += Time.deltaTime * elevatorSpeed; 
+            // Linearly interpolate between bottom and top positions
+            transform.position = Vector3.Lerp(elevatorBottomPosition, elevatorTopPosition, lerpProgress);
+
+            // Update elevator position and relevant booleans when elevator reaches the top
+            if (lerpProgress >= 1) 
+            {   
+                transform.position = elevatorTopPosition; // Ensure the elevator is at the top positon
+                plateIsLowered = false; // Trigger the plate to rise again as the elevator has reached its destination
+                elevatorAtBottom = false; // Elevator is now at the top
+            }
         }
     }
 }
