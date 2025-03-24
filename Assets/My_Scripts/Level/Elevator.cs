@@ -33,6 +33,12 @@ public class Elevator : MonoBehaviour
         if (!plateIsLowered && plateShouldMove) LowerPlate();
     }
 
+    private void FixedUpdate()
+    {
+        // Call the MoveElevator method when the plate is fully lowered.
+        if (plateIsLowered) MoveElevator();
+    }
+
     // OnTirggerEnter triggers when the object this code is assigned to collides with another collider
     private void OnTriggerEnter(Collider other)
     {
