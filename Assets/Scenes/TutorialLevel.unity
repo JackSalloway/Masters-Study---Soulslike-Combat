@@ -781,7 +781,7 @@ MonoBehaviour:
   stepHeight: 0
   stepSmoothing: 0
   lowerRaycast: {fileID: 52358745}
-  upperRaycast: {fileID: 0}
+  upperRaycast: {fileID: 1249078410}
 --- !u!54 &240671090
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5518,6 +5518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519681200}
   - component: {fileID: 1519681201}
+  - component: {fileID: 1519681202}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -5558,12 +5559,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3, z: 1}
-  m_Center: {x: 22.45538, y: 1.5, z: 0.9280005}
+  m_Size: {x: 0.8, y: 0.081588045, z: 0.8}
+  m_Center: {x: 22.45538, y: 0.20201555, z: 0.92800045}
+--- !u!114 &1519681202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519681199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d24c5cf9b23de4392ae634a0cbfdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressurePlate: {fileID: 0}
+  pressurePlateCollider: {fileID: 1519681201}
 --- !u!1 &1529142016
 GameObject:
   m_ObjectHideFlags: 0
