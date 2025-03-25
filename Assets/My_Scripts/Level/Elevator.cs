@@ -62,7 +62,7 @@ public class Elevator : MonoBehaviour
         Vector3 currentPosition = GetCurrentPlatePosition();
 
         // Gradually move current y position towards target y position
-        float newY = Mathf.MoveTowards(currentPosition.y, plateTargetPosition.y, plateSpeed * Time.deltaTime);
+        float newY = Mathf.MoveTowards(currentPosition.y, plateTargetPosition.y, plateSpeed * Time.fixedDeltaTime);
 
         // Update the plates position with the newY value to gradually move the plate
         plate.transform.position = new Vector3(currentPosition.x, newY, currentPosition.z);
@@ -83,7 +83,7 @@ public class Elevator : MonoBehaviour
         Vector3 currentPosition = GetCurrentPlatePosition();
 
         // Gradually move current y position towards target y position
-        float newY = Mathf.MoveTowards(currentPosition.y, plateTargetPosition.y, plateSpeed * Time.deltaTime);
+        float newY = Mathf.MoveTowards(currentPosition.y, plateTargetPosition.y, plateSpeed * Time.fixedDeltaTime);
 
         // Update the plates position with the newY value to gradually move the plate
         plate.transform.position = new Vector3(currentPosition.x, newY, currentPosition.z);
