@@ -2085,6 +2085,59 @@ Transform:
   - {fileID: 481878012}
   m_Father: {fileID: 1220352399}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &685898186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 685898187}
+  - component: {fileID: 685898188}
+  m_Layer: 0
+  m_Name: PlatformCollider
+  m_TagString: ElevatorPlatform
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &685898187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685898186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.439, y: 0.55, z: 0.928}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1519681200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &685898188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685898186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 3, z: 5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &703723028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5540,6 +5593,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1998200541}
+  - {fileID: 685898187}
   - {fileID: 2011208383}
   - {fileID: 709668385}
   m_Father: {fileID: 1826316863}
@@ -5583,8 +5637,14 @@ MonoBehaviour:
   plateDepressed: 0
   plateShouldLower: 0
   plateShouldRaise: 0
-  plateSpeed: 0.2
+  plateSpeed: 0.1
   plateTargetPosition: {x: 0, y: 0, z: 0}
+  elevatorAtBottom: 1
+  elevatorShouldMove: 0
+  elevatorSpeed: 0.3
+  elevatorBottomPosition: {x: 0, y: 0, z: 0}
+  elevatorTopPosition: {x: 0, y: 0, z: 0}
+  lerpProgress: 0
 --- !u!1 &1529142016
 GameObject:
   m_ObjectHideFlags: 0
