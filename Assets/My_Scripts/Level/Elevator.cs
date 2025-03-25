@@ -6,10 +6,11 @@ public class Elevator : MonoBehaviour
     [SerializeField] private GameObject plate; // Variable assigned to the elevator pressure plate game object
     [SerializeField] private Collider plateCollider; // Variable assigned to the box collider component above the elevator pressure plate
     [SerializeField] private bool playerOnPlate = false; // Variable to check if the player is currently on the pressure plate
-    [SerializeField] private bool plateDepressed = false; // Variable to check if the plate is in the up or down position
-    [SerializeField] private bool plateShouldLower = false; // Variable to check if the plate is in the up or down position
-    [SerializeField] private bool plateShouldRaise = false; // Variable to check if the plate is in the up or down position
-    [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the plate
+    [SerializeField] private bool plateDepressed = false; // Variable to check if the pressure plate is in the up or down position
+    [SerializeField] private bool plateShouldLower = false; // Variable to check if the pressure plate is in the up or down position
+    [SerializeField] private bool plateShouldRaise = false; // Variable to check if the presure plate is in the up or down position
+    [SerializeField] private float plateSpeed = 0.2f; // Variable to dictate how fast the pressure plate moves when lowering/raising
+    [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the pressure plate
 
     // Update is called once per frame
     private void Update()
@@ -97,11 +98,7 @@ public class Elevator : MonoBehaviour
             plateDepressed = false; // Plate is no longer depressed
         }
     }
-
-
-
-
-
+    
     // [Header("Elevator Variables")]
     // [SerializeField] private bool elevatorAtBottom = true; // Variable used to track where the elevator is
     // [SerializeField] private float elevatorSpeed; // Variable used to set the speed the elevator moves at
