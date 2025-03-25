@@ -12,12 +12,40 @@ public class Elevator : MonoBehaviour
     [SerializeField] private float plateSpeed = 0.2f; // Variable to dictate how fast the pressure plate moves when lowering/raising
     [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the pressure plate
 
+    [Header("Elevator Variables")]
+    [SerializeField] private bool elevatorAtBottom = true; // Variable used to track where the elevator is (bottom is default)
+    [SerializeField] private bool elevatorShouldMove = false; // Variable used to track if the elevator is currently moving
+    [SerializeField] private float elevatorSpeed = 0.1f; // Variable used to set the speed the elevator moves at
+    [SerializeField] private Vector3 elevatorBottomPosition; // Variable used to store the bottom position of the elevator
+    [SerializeField] private Vector3 elevatorTopPosition; // Variable used to store the top position of the elevator
+    [SerializeField] private float lerpProgress = 0; // Variable used to track linear interpolation progress of elevator movement
+
+    // Start is called once when the script is first ran
+    private void Start()
+    {
+        // Assign the bottom position of the Elevator (default value)
+        elevatorBottomPosition = transform.position;
+        // Assign the top position of the elvator (default position but 23 units higher)
+        elevatorTopPosition = new Vector3(transform.position.x, transform.position.y + 23, transform.position.z);
+    }
+
     // Update is called once per frame
     private void Update()
     {
         if (plateShouldLower) LowerPlate(); // Call LowerPlate method if plateShouldLower is true
 
         if (plateShouldRaise && !playerOnPlate) RaisePlate(); // Call RaisePlate method if plateShouldRaise is true and the player is not currently on the plate
+    }
+
+    private void FixedUpdate()
+    {   
+        // Check if the elevator should be moving or not
+        if (elevatorShouldMove) 
+        {   
+            // Send the elevator up or down depending on its current position
+            if (elevatorAtBottom == true) RaiseElevator();
+            else LowerElevator();
+        }
     }
 
     // OnTirggerEnter is called when two game objects with a collider component touch or overlap 
@@ -71,9 +99,8 @@ public class Elevator : MonoBehaviour
         if (plateTargetPosition.y == plate.transform.position.y) 
         {
             plateShouldLower = false; // Plate should no longer lower
-            plateShouldRaise = true; // Plate should raise back to its original position
             plateDepressed = true; // Plate is now fully depressed
-            SetPlateTargetPosition(0.09f); // Set the target value for the plate to raise back up to
+            elevatorShouldMove = true; // Pressure plate is depressed so the elevator should start moving
         }
     }
 
@@ -89,19 +116,50 @@ public class Elevator : MonoBehaviour
         plate.transform.position = new Vector3(currentPosition.x, newY, currentPosition.z);
 
         // Check if the target position is equal to the current position of the plate and stop it moving if so
-        if (plateTargetPosition.y == plate.transform.position.y) 
+        if (plateTargetPosition.y <= plate.transform.position.y) 
         {
             plateShouldRaise = false; // Plate should no longer raise
             plateDepressed = false; // Plate is no longer depressed
         }
     }
-    
-    // [Header("Elevator Variables")]
-    // [SerializeField] private bool elevatorAtBottom = true; // Variable used to track where the elevator is
-    // [SerializeField] private float elevatorSpeed; // Variable used to set the speed the elevator moves at
-    // [SerializeField] private Vector3 elevatorBottomPosition; // Variable used to store the bottom position of the elevator
-    // [SerializeField] private Vector3 elevatorTopPosition; // Variable used to store the top position of the elevator
-    // [SerializeField] private float lerpProgress = 0; // Variable used to track linear interpolation progress
+
+    private void RaiseElevator()
+    {
+        // Increment linear interpolation progress per call
+        lerpProgress += Time.fixedDeltaTime * elevatorSpeed;
+
+        // Linearly interpolate between bottom and top positions
+        transform.position = Vector3.Lerp(elevatorBottomPosition, elevatorTopPosition, lerpProgress);
+
+        if (lerpProgress >= 1) 
+            {   
+                transform.position = elevatorTopPosition; // Ensure the elevator is at the top positon
+                elevatorAtBottom = false; // Elevator is now at the top
+                elevatorShouldMove = false; // Elevator should no longer be moving
+                lerpProgress = 0; // Reset linear interpolation progress for next elevator movement
+                SetPlateTargetPosition(0.09f); // Set the target value for the plate to raise back up to
+                plateShouldRaise = true; // Plate should raise back to its original position now the elevator is finished moving
+            }
+    }
+
+    private void LowerElevator()
+    {
+        // Increment linear interpolation progress per call
+        lerpProgress += Time.fixedDeltaTime * elevatorSpeed;
+
+        // Linearly interpolate between bottom and top positions
+        transform.position = Vector3.Lerp(elevatorTopPosition, elevatorBottomPosition, lerpProgress);
+
+        if (lerpProgress >= 1) 
+            {   
+                transform.position = elevatorBottomPosition; // Ensure the elevator is at the top positon
+                elevatorAtBottom = true; // Elevator is now at the bottom
+                elevatorShouldMove = false; // Elevator should no longer be moving
+                lerpProgress = 0; // Reset linear interpolation progress for next elevator movement
+                SetPlateTargetPosition(0.09f); // Set the target value for the plate to raise back up to
+                plateShouldRaise = true; // Plate should raise back to its original position now the elevator is finished moving
+            }
+    }
 
     // [Header("Pressure Plate Variables")]
     // [SerializeField] private GameObject plate; // Variable assigned to the elevator pressure plate game object
