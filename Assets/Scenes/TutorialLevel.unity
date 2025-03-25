@@ -5583,7 +5583,7 @@ MonoBehaviour:
   plateDepressed: 0
   plateShouldLower: 0
   plateShouldRaise: 0
-  plateSpeed: 0.1
+  plateSpeed: 0.2
   plateTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1529142016
 GameObject:
