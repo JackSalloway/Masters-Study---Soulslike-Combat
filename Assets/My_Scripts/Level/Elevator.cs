@@ -32,7 +32,7 @@ public class Elevator : MonoBehaviour
             if (!plateDepressed && !plateShouldLower)
             {
                 plateShouldLower = true; // Set the plateShouldLower variable to true to begin lowering the plate
-                SetPlateTargetPosition(-0.09f);
+                SetPlateTargetPosition(-0.09f); // Update plate target position
             }
         }
     }
