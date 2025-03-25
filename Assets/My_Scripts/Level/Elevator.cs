@@ -152,7 +152,7 @@ public class Elevator : MonoBehaviour
 
         if (lerpProgress >= 1) 
             {   
-                transform.position = elevatorBottomPosition; // Ensure the elevator is at the top positon
+                transform.position = elevatorBottomPosition; // Ensure the elevator is at the bottom positon
                 elevatorAtBottom = true; // Elevator is now at the bottom
                 elevatorShouldMove = false; // Elevator should no longer be moving
                 lerpProgress = 0; // Reset linear interpolation progress for next elevator movement
