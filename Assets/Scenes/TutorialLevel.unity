@@ -3303,7 +3303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14.97
       objectReference: {fileID: 0}
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3311,7 +3311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.21
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5577,17 +5577,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d24c5cf9b23de4392ae634a0cbfdf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elevatorAtBottom: 1
-  elevatorSpeed: 1
-  elevatorShouldMove: 0
-  elevatorBottomPosition: {x: 0, y: 0, z: 0}
-  elevatorTopPosition: {x: 0, y: 0, z: 0}
-  lerpProgress: 0
   plate: {fileID: 709668384}
   plateCollider: {fileID: 1519681201}
-  plateStoodOn: 0
-  plateShouldMove: 0
-  plateIsLowered: 0
+  playerOnPlate: 0
+  plateDepressed: 0
+  plateShouldLower: 0
+  plateShouldRaise: 0
+  plateSpeed: 0.1
   plateTargetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1529142016
 GameObject:
