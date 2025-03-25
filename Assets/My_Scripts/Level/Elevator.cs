@@ -9,7 +9,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] private bool plateDepressed = false; // Variable to check if the pressure plate is in the up or down position
     [SerializeField] private bool plateShouldLower = false; // Variable to check if the pressure plate is in the up or down position
     [SerializeField] private bool plateShouldRaise = false; // Variable to check if the presure plate is in the up or down position
-    [SerializeField] private float plateSpeed = 0.15f; // Variable to dictate how fast the pressure plate moves when lowering/raising
+    [SerializeField] private float plateSpeed = 0.2f; // Variable to dictate how fast the pressure plate moves when lowering/raising
     [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the pressure plate
 
     // Update is called once per frame
