@@ -7,8 +7,8 @@ public class Elevator : MonoBehaviour
     [SerializeField] private Collider plateCollider; // Variable assigned to the box collider component above the elevator pressure plate
     [SerializeField] private bool playerOnPlate = false; // Variable to check if the player is currently on the pressure plate
     [SerializeField] private bool plateDepressed = false; // Variable to check if the pressure plate is in the up or down position
-    [SerializeField] private bool plateShouldLower = false; // Variable to check if the pressure plate is in the up or down position
-    [SerializeField] private bool plateShouldRaise = false; // Variable to check if the presure plate is in the up or down position
+    [SerializeField] private bool plateShouldLower = false; // Variable to check if the pressure plate is currently lowering
+    [SerializeField] private bool plateShouldRaise = false; // Variable to check if the presure plate is currently raising
     [SerializeField] private float plateSpeed = 0.2f; // Variable to dictate how fast the pressure plate moves when lowering/raising
     [SerializeField] private Vector3 plateTargetPosition; // Variable used to store the target position of the pressure plate
 
