@@ -80,6 +80,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        // Check if the player walks over an elevator platform
+        if (other.CompareTag("ElevatorPlatform"))
+        {   
+            // Set the elevator platform to be the parent of the player character model so they move together
+            transform.SetParent(other.transform); 
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // Check if the player walks off an elevator platform
+        if (other.CompareTag("ElevatorPlatform"))
+        {   
+            // Set the parent of the player character to null when the leaves the elevator platform
+            transform.SetParent(null); 
+        }
+    }
+
     // Method to set animator controller parameters depending on supplied arguments
     void SetAnimatorParameter(string paramName, bool value)
     {
