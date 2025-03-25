@@ -48,10 +48,7 @@ public class Elevator : MonoBehaviour
     }
 
     // Method to return the current position of the plate
-    private Vector3 GetCurrentPlatePosition()
-    {
-        return plate.transform.position;
-    }
+    private Vector3 GetCurrentPlatePosition() => plate.transform.position;
 
     // Method to set the target position of the pressure plate based the float parament yDifference
     private void SetPlateTargetPosition(float yDifference)
