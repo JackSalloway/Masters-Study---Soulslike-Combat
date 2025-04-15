@@ -5,7 +5,7 @@ public class MovementTuition : MonoBehaviour
     public GameObject smallTutorialPrefab; // Variable assigned to the small tutorial game object prefab
     public Transform canvasTransform; // Variable assigned to the UI canvas
 
-    [SerializeField] private TuitionData tuitionData; // Variable assigned to the tuition data. 
+    [SerializeField] private TuitionData tuitionData; // Variable assigned to the TuitionData script component. 
 
     private void OnTriggerEnter(Collider other)
     {
