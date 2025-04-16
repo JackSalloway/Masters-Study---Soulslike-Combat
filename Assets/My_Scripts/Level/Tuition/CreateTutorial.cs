@@ -3,9 +3,9 @@ using UnityEngine;
 public class CreateTutorial : MonoBehaviour
 {
     [SerializeField] private string headerHeirarchy; // Variable assigned to the heirarchy path for the header text component
-    [SerializeField] private string headerText; // Variable assigned to a specific tutorial header value in the spection window
+    [SerializeField] private string headerText; // Variable assigned to a specific tutorial header value in the inspection window
     [SerializeField] private string shortDescriptionHeirarchy; // Variable assigned to the heirarchy path for the short description text component
-    [SerializeField] private string shortDescriptionText; // Variable assigned to a specific tutorial short description value in the spection window
+    [SerializeField] private string shortDescriptionText; // Variable assigned to a specific tutorial short description value in the inspection window
     [SerializeField] private TuitionData tuitionData; // Variable assigned to the TuitionData script component.
 
     // Will be called when the player enters a tutorial trigger box
