@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class TuitionData : MonoBehaviour
@@ -21,4 +22,13 @@ public class TuitionData : MonoBehaviour
         activeTutorial = null; // Reset the value of activeTutorial to null
     }
 
+    // Method used to set an individual text value of a UI component, takes two strings as its parameters.
+    // heirarchyPath is a string that refers to the path in the heirarchy window from the currently rendered tutorial to the relevant child that needs to be updated.
+    // desiredText is a string that contains the value of the text being set. 
+    public void SetTextValue(string heirarchyPath, string desiredText)
+    {
+        Transform textObject = activeTutorial.transform.Find(heirarchyPath);
+        TextMeshProUGUI headerText = textObject.GetComponent<TextMeshProUGUI>();
+        headerText.text = desiredText;
+    }
 }
