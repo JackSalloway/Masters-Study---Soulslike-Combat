@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class CreateTutorial : MonoBehaviour
 {
-    [SerializeField] private string headerHeirarchy; // Variable assigned to the heirarchy path for the header text component
-    [SerializeField] private string headerText; // Variable assigned to a specific tutorial header value in the inspection window
-    [SerializeField] private string shortDescriptionHeirarchy; // Variable assigned to the heirarchy path for the short description text component
-    [SerializeField] private string shortDescriptionText; // Variable assigned to a specific tutorial short description value in the inspection window
-    [SerializeField] private TuitionData tuitionData; // Variable assigned to the TuitionData script component.
+    [SerializeField] private TuitionData tuitionData; // Variable assigned to the TuitionData script component. 
 
+    // Variables used to store the hierarchy path of each UI game object relevant to the TutorialTriggers parent object
+    [Header("Hierarchy Path Strings")]
+    [SerializeField] private string headerHierarchy = "Header_Wrapper/Header_Text";
+    [SerializeField] private string shortDescriptionHierarchy = "Short_Description_Wrapper/Short_Description_Text";
+
+    // Variables used to store specific text values for each tutorial
+    [Header("Text Value Strings")]
+    [SerializeField] private string headerText;
+    [SerializeField] private string shortDescriptionText;
+    
     // Will be called when the player enters a tutorial trigger box
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +21,8 @@ public class CreateTutorial : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             tuitionData.SpawnTutorial(); // Instantiate tutorial
-            tuitionData.SetTextValue(headerHeirarchy, headerText); // Set header value
-            tuitionData.SetTextValue(shortDescriptionHeirarchy, shortDescriptionText); // Set short description value
+            tuitionData.SetTextValue(headerHierarchy, headerText); // Set header value
+            tuitionData.SetTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
         }
     }
 }
