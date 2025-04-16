@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CreateTutorial : MonoBehaviour
@@ -8,11 +9,16 @@ public class CreateTutorial : MonoBehaviour
     [Header("Hierarchy Path Strings")]
     [SerializeField] private string headerHierarchy = "Header_Wrapper/Header_Text";
     [SerializeField] private string shortDescriptionHierarchy = "Short_Description_Wrapper/Short_Description_Text";
+    [SerializeField] private string extraDescriptionHierarchy = "Extra_Description_Wrapper/Extra_Description_Text";
+    [SerializeField] private string optionsHierarchy = "Options_Wrapper/Options_Text";
 
     // Variables used to store specific text values for each tutorial
     [Header("Text Value Strings")]
     [SerializeField] private string headerText;
     [SerializeField] private string shortDescriptionText;
+    [SerializeField] private string extraDescriptionText;
+    [SerializeField] private string smallOptionsText;
+    [SerializeField] private string largeOptionsText;
     
     // Will be called when the player enters a tutorial trigger box
     private void OnTriggerEnter(Collider other)
@@ -20,9 +26,19 @@ public class CreateTutorial : MonoBehaviour
         // Check if the player has entered the collider and call the SpawnTutorial method
         if (other.CompareTag("Player"))
         {
-            tuitionData.SpawnTutorial(); // Instantiate tutorial
-            tuitionData.SetTextValue(headerHierarchy, headerText); // Set header value
-            tuitionData.SetTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
+            tuitionData.SpawnTutorials(); // Instantiate both the small and large tutorials
+
+            // Set the text values for the small tutorial
+            tuitionData.SetSmallTutorialTextValue(headerHierarchy, headerText); // Set header value
+            tuitionData.SetSmallTutorialTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
+            tuitionData.SetSmallTutorialTextValue(optionsHierarchy, smallOptionsText); // Set options value
+
+            // Set the text values for the large tutorial
+            tuitionData.SetLargeTutorialTextValue(headerHierarchy, headerText); // Set header value
+            tuitionData.SetLargeTutorialTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
+            tuitionData.SetLargeTutorialTextValue(extraDescriptionHierarchy, extraDescriptionText); // Set extra description value
+            tuitionData.SetLargeTutorialTextValue(optionsHierarchy, largeOptionsText); // Set options value
+
         }
     }
 }

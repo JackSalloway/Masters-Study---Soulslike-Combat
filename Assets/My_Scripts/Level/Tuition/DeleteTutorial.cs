@@ -7,6 +7,6 @@ public class DeleteTutorial : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Check if the player has exited the collider and call the DeleteTutorial method
-        if (other.CompareTag("Player")) tuitionData.DeleteTutorial();
+        if (other.CompareTag("Player")) tuitionData.DeleteTutorials();
     }
 }
