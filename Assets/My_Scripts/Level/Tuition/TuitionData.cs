@@ -3,37 +3,13 @@ using UnityEngine;
 
 public class TuitionData : MonoBehaviour
 {
-    public float holdDuration = 2f;
-    public float holdTimer = 0f;
-
+    public bool tutorialActive = false; // Variable used to check if there is a tutorial already rendered
     public GameObject smallTutorialPrefab; // Variable assigned to the small tutorial game object prefab
     public GameObject largeTutorialPrefab; // Variable assigned to the large tutorial game object prefab
     public Transform canvasTransform; // Variable assigned to the UI canvas
 
-    [SerializeField] private bool tutorialActive = false; // Variable used to check if there is a tutorial already rendered
     [SerializeField] private GameObject smallTutorial; // Variable assigned to the newly instantiated small tutorial game object
     [SerializeField] private GameObject largeTutorial; // Variable assigned to the newly instantiated large tutorial game object
-
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            if (tutorialActive == false) return; // Early return if no tutorials are currently active
-
-            holdTimer += Time.deltaTime;
-
-            if (holdTimer >= holdDuration)
-            {
-                smallTutorial.SetActive(!smallTutorial.activeInHierarchy);
-                largeTutorial.SetActive(!largeTutorial.activeInHierarchy);
-                holdTimer = 0;
-            }
-        }
-        else
-        {
-            holdTimer = 0;
-        }
-    }
 
     public void SpawnTutorials()
     {
@@ -52,6 +28,14 @@ public class TuitionData : MonoBehaviour
         smallTutorial = null; // Reset the value of smallTutorial to null
         largeTutorial = null; // Reset the value of largeTutorial to null
         tutorialActive = false; // Reset the value of tutorialActive to false
+    }
+
+    // Method used to toggle the active property on both the small and large tutorials - effectively swapping them.
+    public void ToggleActiveTutorial()
+    {   
+        // Set both tutorials active properties to the inverse of themselves
+        smallTutorial.SetActive(!smallTutorial.activeInHierarchy);
+        largeTutorial.SetActive(!largeTutorial.activeInHierarchy);
     }
 
     // Method used to set an individual text value of a UI component in the small tutorial, takes two strings as its parameters.
