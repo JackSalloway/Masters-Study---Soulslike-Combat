@@ -27,6 +27,5 @@ public class PlayerInputs : MonoBehaviour
         
         // Check if the player releases the TAB key and reset the tabHoldTimer variable to 0 when they do
         if (Input.GetKeyUp(KeyCode.Tab)) tabHoldTimer = 0;
-        
     }
 }
