@@ -19,6 +19,7 @@ public class CreateTutorial : MonoBehaviour
     [SerializeField] private string extraDescriptionText;
     [SerializeField] private string smallOptionsText;
     [SerializeField] private string largeOptionsText;
+    [SerializeField] private string videoClipPath;
     
     // Will be called when the player enters a tutorial trigger box
     private void OnTriggerEnter(Collider other)
@@ -28,17 +29,17 @@ public class CreateTutorial : MonoBehaviour
         {
             tuitionData.SpawnTutorials(); // Instantiate both the small and large tutorials
 
-            // Set the text values for the small tutorial
+            // Set the values for the small tutorial
             tuitionData.SetSmallTutorialTextValue(headerHierarchy, headerText); // Set header value
             tuitionData.SetSmallTutorialTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
             tuitionData.SetSmallTutorialTextValue(optionsHierarchy, smallOptionsText); // Set options value
 
-            // Set the text values for the large tutorial
+            // Set the values for the large tutorial
             tuitionData.SetLargeTutorialTextValue(headerHierarchy, headerText); // Set header value
             tuitionData.SetLargeTutorialTextValue(shortDescriptionHierarchy, shortDescriptionText); // Set short description value
             tuitionData.SetLargeTutorialTextValue(extraDescriptionHierarchy, extraDescriptionText); // Set extra description value
             tuitionData.SetLargeTutorialTextValue(optionsHierarchy, largeOptionsText); // Set options value
-
+            tuitionData.SetVideoClip(videoClipPath);
         }
     }
 }

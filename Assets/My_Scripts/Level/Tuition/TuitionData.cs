@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class TuitionData : MonoBehaviour
 {
@@ -56,5 +57,15 @@ public class TuitionData : MonoBehaviour
         Transform textObject = largeTutorial.transform.Find(hierarchyPath);
         TextMeshProUGUI headerText = textObject.GetComponent<TextMeshProUGUI>();
         headerText.text = desiredText;
+    }
+
+    public void SetVideoClip(string videoPath)
+    {
+        VideoClip videoClip = Resources.Load<VideoClip>(videoPath);
+
+        Transform videoObject = largeTutorial.transform.Find("Media_Wrapper/Video_Player");
+        VideoPlayer videoPlayer = videoObject.GetComponent<VideoPlayer>();
+
+        videoPlayer.clip = videoClip;
     }
 }
