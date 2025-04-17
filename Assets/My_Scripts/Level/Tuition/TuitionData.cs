@@ -12,6 +12,7 @@ public class TuitionData : MonoBehaviour
     [SerializeField] private GameObject smallTutorial; // Variable assigned to the newly instantiated small tutorial game object
     [SerializeField] private GameObject largeTutorial; // Variable assigned to the newly instantiated large tutorial game object
 
+    // Method to spawn the tutorial UI when the player enters a tutorial trigger collider
     public void SpawnTutorials()
     {
         if (tutorialActive == true) return; // Early return if there are already tutorials active
