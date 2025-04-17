@@ -35,7 +35,7 @@ public class TuitionData : MonoBehaviour
     // Method used to toggle the active property on both the small and large tutorials - effectively swapping them.
     public void ToggleActiveTutorial()
     {   
-        // Set both tutorials active properties to the inverse of themselves
+        // Set both tutorials active property to the inverse of themselves
         smallTutorial.SetActive(!smallTutorial.activeInHierarchy);
         largeTutorial.SetActive(!largeTutorial.activeInHierarchy);
     }
