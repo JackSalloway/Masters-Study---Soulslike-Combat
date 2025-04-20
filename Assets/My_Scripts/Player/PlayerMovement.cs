@@ -151,13 +151,10 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hitLower;
         if (Physics.Raycast(lowerRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
         {
-            Debug.Log("Lower Raycast did hit");
-
             // Send out a raycast from the player characters shin to see if there is empty space for them to stand on
             RaycastHit hitUpper;
             if (!Physics.Raycast(upperRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
             {
-                Debug.Log("Upper Raycast did not hit - Step detected");
                 // Adjust the player characters y position by the stepSmoothing value
                 rb.transform.position -= new Vector3(0f, -stepSmoothing, 0f);
             }
