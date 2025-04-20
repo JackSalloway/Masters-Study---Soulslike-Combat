@@ -148,12 +148,10 @@ public class PlayerMovement : MonoBehaviour
     private void ClimbStep()
     {
         // Send out a raycast from the player characters foot to see if they are walking into a game object
-        RaycastHit hitLower;
-        if (Physics.Raycast(lowerRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        if (Physics.Raycast(lowerRaycast.transform.position, transform.TransformDirection(Vector3.forward), 0.1f))
         {
             // Send out a raycast from the player characters shin to see if there is empty space for them to stand on
-            RaycastHit hitUpper;
-            if (!Physics.Raycast(upperRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            if (!Physics.Raycast(upperRaycast.transform.position, transform.TransformDirection(Vector3.forward), 0.2f))
             {
                 // Adjust the player characters y position by the stepSmoothing value
                 rb.transform.position -= new Vector3(0f, -stepSmoothing, 0f);
