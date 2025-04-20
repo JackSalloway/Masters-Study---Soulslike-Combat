@@ -14,16 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float verticalInput; // Variable for storing the input values of the W and S keys
     [SerializeField] private float horizontalInput; // Variable for storing the input values of the A and D keys
-    [SerializeField] private float stepSmoothing; // Variable used to smooth the y movement when stepping up small inclines
-    [SerializeField] private GameObject lowerRaycast; // Variable assigned to a GameObject located in the player characters foot
-    [SerializeField] private GameObject upperRaycast; // Variable assigned to a GameObject located in the player characters shin
-
-    private Rigidbody rb; // Variable assigned to the player characters rigid body component
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>(); // Assign rb variable to the player characters rigid body component when the script starts
-    }
 
     // Update is called once per frame
     void Update()
@@ -89,12 +79,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update is called every 0.02 seconds (50 times per second)
-    void FixedUpdate()
-    {
-        ClimbStep();
-    }
-
     void OnTriggerEnter(Collider other)
     {
         // Check if the player walks over an elevator platform
@@ -142,26 +126,6 @@ public class PlayerMovement : MonoBehaviour
         allowInput = true; // Re-enable player inputs
         invulnerabilityFramesActive = false; // Make it so the player can take damage again
         animator.SetBool("isRolling", false); // End the rolling animation 
-    }
-
-    // Method used to allow the player to smoothly climb up vertical game objects (small inclines)
-    private void ClimbStep()
-    {
-        // Send out a raycast from the player characters foot to see if they are walking into a game object
-        RaycastHit hitLower;
-        if (Physics.Raycast(lowerRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
-        {
-            Debug.Log("Lower Raycast did hit");
-
-            // Send out a raycast from the player characters shin to see if there is empty space for them to stand on=
-            RaycastHit hitUpper;
-            if (!Physics.Raycast(upperRaycast.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
-            {
-                Debug.Log("Upper Raycast did not hit - Step detected");
-                // Adjust the player characters y position by the stepSmoothing value
-                rb.transform.position -= new Vector3(0f, -stepSmoothing, 0f);
-            }
-        }
     }
 }
 
