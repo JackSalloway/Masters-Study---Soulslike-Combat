@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float verticalInput; // Variable for storing the input values of the W and S keys
     [SerializeField] private float horizontalInput; // Variable for storing the input values of the A and D keys
-    [SerializeField] private float stepHeight; // Variable used to dictate how high the player can step up
     [SerializeField] private float stepSmoothing; // Variable used to smooth the y movement when stepping up small inclines
     [SerializeField] private GameObject lowerRaycast; // Variable assigned to a GameObject located in the player characters foot
     [SerializeField] private GameObject upperRaycast; // Variable assigned to a GameObject located in the player characters shin
