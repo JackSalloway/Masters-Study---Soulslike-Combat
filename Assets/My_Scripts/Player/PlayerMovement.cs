@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class PlayerMovement : MonoBehaviour
 {    
     public Animator animator; 
