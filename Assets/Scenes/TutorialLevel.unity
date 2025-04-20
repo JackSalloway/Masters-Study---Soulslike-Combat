@@ -1032,6 +1032,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertText: {fileID: 734759401}
   actionType: 
+--- !u!114 &240671099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240671086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5312ac975820b7d47a1bab91fef82c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialController: {fileID: 1819286331}
+  tabHoldDuration: 1
+  tabHoldTimer: 0
 --- !u!1 &241002377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3625,9 @@ PrefabInstance:
       addedObject: {fileID: 240671094}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 240671099}
+    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 240671089}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
@@ -3625,10 +3643,10 @@ PrefabInstance:
       addedObject: {fileID: 240671096}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 240671097}
+      addedObject: {fileID: 240671098}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 240671098}
+      addedObject: {fileID: 240671097}
   m_SourcePrefab: {fileID: 100100000, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
 --- !u!1 &804302731
 GameObject:
@@ -7153,12 +7171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc86274f70d57f9449a3ffa3c5a9b4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdDuration: 2
-  holdTimer: 0
+  tutorialActive: 0
   smallTutorialPrefab: {fileID: 6744584489724422304, guid: 44dabf32d7745714bbe2c3d4b890af53, type: 3}
   largeTutorialPrefab: {fileID: 7542367561840664623, guid: 55f7197d6a10e6d4e91ac0b70c1e5918, type: 3}
   canvasTransform: {fileID: 442068055}
-  tutorialActive: 0
   smallTutorial: {fileID: 0}
   largeTutorial: {fileID: 0}
 --- !u!1 &1826316862
