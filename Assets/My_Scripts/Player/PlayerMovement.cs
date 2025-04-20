@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject lowerRaycast; // Variable assigned to a GameObject located in the player characters foot
     [SerializeField] private GameObject upperRaycast; // Variable assigned to a GameObject located in the player characters shin
 
-    // private Vector3 upperRaycast; // Variable used to check if the player characters shins are colliding with something
     private Rigidbody rb; // Variable assigned to the player characters rigid body component
 
     void Awake()
