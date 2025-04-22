@@ -26,7 +26,7 @@ public class Elevator : MonoBehaviour
         // Assign the bottom position of the Elevator (default value)
         elevatorBottomPosition = transform.position;
         // Assign the top position of the elvator (default position but 23 units higher)
-        elevatorTopPosition = new Vector3(transform.position.x, transform.position.y + 23, transform.position.z);
+        elevatorTopPosition = new Vector3(transform.position.x, transform.position.y + 24, transform.position.z);
     }
 
     // Update is called once per frame
@@ -96,7 +96,7 @@ public class Elevator : MonoBehaviour
         plate.transform.position = new Vector3(currentPosition.x, newY, currentPosition.z);
 
         // Check if the target position is equal to the current position of the plate and stop it moving if so
-        if (plateTargetPosition.y == plate.transform.position.y) 
+        if (plateTargetPosition.y >= plate.transform.position.y) 
         {
             plateShouldLower = false; // Plate should no longer lower
             plateDepressed = true; // Plate is now fully depressed
