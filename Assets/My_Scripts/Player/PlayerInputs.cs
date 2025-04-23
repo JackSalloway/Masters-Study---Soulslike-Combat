@@ -6,6 +6,10 @@ public class PlayerInputs : MonoBehaviour
     private float mouseX; // Variable to store mouse X axis movement
     private float mouseY; // Variable to store mouse Y axis movement
 
+    [Header("Movement Input Values")]
+    private float verticalInput; // Variable to store vertical inputs (W & S keys)
+    private float horizontalInput; // Variable to store horizontal inputs (A & D keys)
+
     [Header("Tutorial Values")]
     [SerializeField] private float tabHoldDuration; // Variable used to store how long the player needs to hold the TAB key to toggle tutorials
     [SerializeField] private float tabHoldTimer; // Variable used to track how long the TAB key is held for
@@ -13,6 +17,7 @@ public class PlayerInputs : MonoBehaviour
     [Header("Script References")]
     [SerializeField] private TuitionData tutorialController; // Reference to the TuitionData script
     [SerializeField] private PlayerCamera playerCamera; // Reference to the PlayerCamera script
+    [SerializeField] private PlayerMovement playerMovement; // Reference to the PlayerMovement script
 
     // Update is called once per frame
     void Update()
@@ -41,5 +46,11 @@ public class PlayerInputs : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X"); // Get X axis input
         mouseY = Input.GetAxis("Mouse Y"); // Get Y axis input
         playerCamera.SetMouseInput(new Vector2(mouseX, mouseY)); // Call SetMouseInput method in PlayerCamera script
+
+        // -------------------------------------------
+        // W, A, S, D KEYS - Handles player movement
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        playerMovement.MovePlayer(verticalInput, horizontalInput);
     }
 }

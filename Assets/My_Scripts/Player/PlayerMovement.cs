@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed; // Vairiable used to control how fast the player model rotates. Assigned in the inspection window
     public bool allowInput = true; // Variable used to prevent input when the player is rolling
 
-    [SerializeField] private float verticalInput; // Variable for storing the input values of the W and S keys
-    [SerializeField] private float horizontalInput; // Variable for storing the input values of the A and D keys
+    [SerializeField] private float verticalMovement; // Variable for storing backwards and forward movement values
+    [SerializeField] private float horizontalMovement; // Variable for storing left and right movement values
     [SerializeField] private float stepSmoothing; // Variable used to smooth the y movement when stepping up small inclines
     [SerializeField] private GameObject lowerRaycast; // Variable assigned to a GameObject located in the player characters foot
     [SerializeField] private GameObject upperRaycast; // Variable assigned to a GameObject located in the player characters shin
@@ -25,8 +25,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Assign rb variable to the player characters rigid body component when the script starts
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MovePlayer(float verticalInput, float horizontalInput)
     {
         // Check if the player is dead and early return to prevent movement
         if (animator.GetBool("isDead") == true) return;
@@ -34,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
         // Get both the vertical and horizontal input values if the allowInput variable is set to true.
         if (allowInput == true) 
         {
-            verticalInput = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime; // W and S keys.
-            horizontalInput = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime; // A and D keys.
+            verticalMovement = verticalInput * movementSpeed * Time.deltaTime; // W and S keys.
+            horizontalMovement = horizontalInput * movementSpeed * Time.deltaTime; // A and D keys.
         }
         
         // Get camera-relative direction
@@ -49,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         // Create direction-relative input vectors
-        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
-        Vector3 rightRelativeHorizonatalInput = horizontalInput * right;
+        Vector3 forwardRelativeVerticalInput = verticalMovement * forward;
+        Vector3 rightRelativeHorizonatalInput = horizontalMovement * right;
 
         // Create camera relative movement
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizonatalInput;
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         };
 
         // Update animation variable value
-        if (verticalInput != 0 || horizontalInput != 0) {
+        if (verticalMovement != 0 || horizontalMovement != 0) {
             SetAnimatorParameter("isRunning", true);
             transform.Translate(cameraRelativeMovement, Space.World);
 
@@ -82,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Rotate the character to reflect the direction they are moving provided they are moving and not rolling
-        if (verticalInput !=0 || horizontalInput != 0)
+        if (verticalMovement !=0 || horizontalMovement != 0)
         {   
             Quaternion targetRotation = Quaternion.LookRotation(cameraRelativeMovement);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -124,8 +123,8 @@ public class PlayerMovement : MonoBehaviour
     // Method used to set current player movement values to 0. Used during certain animations
     public void ResetMovementInputs()
     {
-        verticalInput = 0; // Reset vertical input value to prevent any residual movement
-        horizontalInput = 0; // Reset horizontal input value to prevent any residual movement
+        verticalMovement = 0; // Reset vertical input value to prevent any residual movement
+        horizontalMovement = 0; // Reset horizontal input value to prevent any residual movement
     }
 
     // Method used to set the isRolling parameter to true and disable player inputs. This will be called at the start of the roll animation using an event
