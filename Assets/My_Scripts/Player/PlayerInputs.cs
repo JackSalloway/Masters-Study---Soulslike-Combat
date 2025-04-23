@@ -3,9 +3,12 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
     [Header("Tutorial Values")]
-    [SerializeField] private TuitionData tutorialController; // Variable assigned to the TuitionData Script
     [SerializeField] private float tabHoldDuration; // Variable used to store how long the player needs to hold the TAB key to toggle tutorials
     [SerializeField] private float tabHoldTimer; // Variable used to track how long the TAB key is held for
+
+    [Header("Script References")]
+    [SerializeField] private TuitionData tutorialController; // Reference to the TuitionData script
+    [SerializeField] private PlayerCamera playerCamera; // Reference to the PlayerCamera script
 
     // Update is called once per frame
     void Update()
