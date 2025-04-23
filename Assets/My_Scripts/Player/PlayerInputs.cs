@@ -19,6 +19,8 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private PlayerCamera playerCamera; // Reference to the PlayerCamera script
     [SerializeField] private PlayerMovement playerMovement; // Reference to the PlayerMovement script
     [SerializeField] private PlayerParry playerParry; // Reference to the PlayerParry script
+    [SerializeField] private PlayerAttack playerAttack; // Reference to the PlayerAttack script
+    [SerializeField] private TextAlert textAlert; // Reference to the TextAlert script
 
     // Update is called once per frame
     void Update()
@@ -57,5 +59,17 @@ public class PlayerInputs : MonoBehaviour
         //--------------------------------
         // F KEY - Handles player parrying
         if (Input.GetKey(KeyCode.F)) playerParry.StartParry();
+
+        // ---------------------------------------------------
+        // MOUSE BUTTON 0 (LEFT CLICK) - Handles starting player attack
+        if (Input.GetMouseButtonDown(0) && playerAttack.isTyping == false)
+        {
+            if (textAlert.actionType == "") return; // Early return if the player has yet to perform a successful dodge or parry
+            playerAttack.StartVerbalAttack();
+        }
+
+        // -------------------------------------------------
+        // RETURN (ENTER) KEY - Handles ending player attack
+        if (Input.GetKeyDown(KeyCode.Return) && playerAttack.isTyping == true) playerAttack.EndVerbalAttack();
     }
 }
