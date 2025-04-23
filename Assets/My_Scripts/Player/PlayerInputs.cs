@@ -18,6 +18,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private TuitionData tutorialController; // Reference to the TuitionData script
     [SerializeField] private PlayerCamera playerCamera; // Reference to the PlayerCamera script
     [SerializeField] private PlayerMovement playerMovement; // Reference to the PlayerMovement script
+    [SerializeField] private PlayerParry playerParry; // Reference to the PlayerParry script
 
     // Update is called once per frame
     void Update()
@@ -52,5 +53,9 @@ public class PlayerInputs : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         playerMovement.MovePlayer(verticalInput, horizontalInput);
+
+        //--------------------------------
+        // F KEY - Handles player parrying
+        if (Input.GetKey(KeyCode.F)) playerParry.StartParry();
     }
 }
