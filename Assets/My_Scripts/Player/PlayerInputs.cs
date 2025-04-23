@@ -13,7 +13,8 @@ public class PlayerInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        // Check if the player is holding the TAB key.
+        // --------------------------------------------------------------------
+        // TAB KEY - Handles toggling tutorial between small and large versions
         if (Input.GetKey(KeyCode.Tab))
         {
             if (tutorialController.tutorialActive == false) return; // Early return if no tutorials are currently active
