@@ -30,5 +30,12 @@ public class PlayerInputs : MonoBehaviour
         
         // Check if the player releases the TAB key and reset the tabHoldTimer variable to 0 when they do
         if (Input.GetKeyUp(KeyCode.Tab)) tabHoldTimer = 0;
+
+        // ------------------------------------------------
+        // MOUSE INPUT - Handles player camera manipulation
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        playerCamera.SetMouseInput(new Vector2(mouseX, mouseY));
     }
 }

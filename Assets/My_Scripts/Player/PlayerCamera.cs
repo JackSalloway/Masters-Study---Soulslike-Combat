@@ -16,6 +16,7 @@ public class PlayerCamera : MonoBehaviour
     private float maxYAngle = 40f; // Variable to prevent the user from rotating the camera too far up
     private Vector3 currentRotation; // Variable to store the current rotation of the camera
     private Vector3 rotationSmoothVelocity; // Variable to be used to smooth the rotation of the camera, uses the ref keyword
+    private Vector2 mouseInput; // Variable that stores mouse input as a Vector2 struct (x, y)
 
     // Start will be called once when the script is ran
     void Start()
@@ -40,10 +41,9 @@ public class PlayerCamera : MonoBehaviour
             return; // Early return to prevent camera mouse movement
         }
 
-
-        // Get mouse inputs for both x and y mouse axes
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        // Assign mouse inputs for both x and y mouse axes
+        float mouseY = mouseInput.y * mouseSensitivity * Time.deltaTime;
+        float mouseX = mouseInput.x * mouseSensitivity * Time.deltaTime;
 
         // Update yaw and pitch rotations
         yaw += mouseX; // Due to how rotations work, mouseX will be used for the yaw value which will rotate the Y axis
@@ -64,5 +64,11 @@ public class PlayerCamera : MonoBehaviour
             
         // Set the position and rotation values of the cameras transform component
         transform.SetPositionAndRotation(playerCharacter.transform.position + offset, Quaternion.Euler(currentRotation.x, currentRotation.y, 0));        
+    }
+
+    // Method to recieve mouse input from PlayerInput script
+    public void SetMouseInput(Vector2 mouseDelta)
+    {
+        mouseInput = mouseDelta;
     }
 }
