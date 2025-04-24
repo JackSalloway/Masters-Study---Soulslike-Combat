@@ -21,7 +21,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private PlayerParry playerParry; // Reference to the PlayerParry script
     [SerializeField] private PlayerAttack playerAttack; // Reference to the PlayerAttack script
     [SerializeField] private TextAlert textAlert; // Reference to the TextAlert script
-    [SerializeField] private Door door; // Reference to the Door script
+    [SerializeField] private PlayerInteraction playerInteraction; // Reference to the PlayerInteraction script
 
     // Update is called once per frame
     void Update()
@@ -58,11 +58,8 @@ public class PlayerInputs : MonoBehaviour
                 return; // Early return to prevent any more code being ran.
             }
 
-            // Check if the player is in range of a door
-            if (door.playerInRange == true)
-            {
-                door.Interact();
-            }
+            // Attempt to interact with a game object within range of the player's interaction range
+            playerInteraction.Interact();
         }
 
         // ------------------------------------------------
