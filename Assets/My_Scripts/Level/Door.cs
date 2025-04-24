@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     public bool playerInRange = false; // Is the player within range of the door?
     
@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     [SerializeField] private float openSpeed; // How fast the door should open
 
     // Method to set the value of isOpen to true and trigger the coroutine to open the door
-    public void StartOpening()
+    public void Interact()
     {
         if (isOpen) return; // Early return if the door is already open.
         isOpen = true;
@@ -34,7 +34,7 @@ public class Door : MonoBehaviour
 
     // Change the state of playerInRange to true when the player enters the collider near the door
     private void OnTriggerEnter(Collider other)
-    {
+    { 
         if (other.CompareTag("Player")) playerInRange = true;
     }
 

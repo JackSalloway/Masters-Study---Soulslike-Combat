@@ -61,7 +61,7 @@ public class PlayerInputs : MonoBehaviour
             // Check if the player is in range of a door
             if (door.playerInRange == true)
             {
-                door.StartOpening();
+                door.Interact();
             }
         }
 
