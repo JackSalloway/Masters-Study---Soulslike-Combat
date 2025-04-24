@@ -34,7 +34,7 @@ public class Door : MonoBehaviour, IInteractable
 
     // Change the state of playerInRange to true when the player enters the collider near the door
     private void OnTriggerEnter(Collider other)
-    { 
+    {
         if (other.CompareTag("Player")) playerInRange = true;
     }
 
