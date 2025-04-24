@@ -21,6 +21,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private PlayerParry playerParry; // Reference to the PlayerParry script
     [SerializeField] private PlayerAttack playerAttack; // Reference to the PlayerAttack script
     [SerializeField] private TextAlert textAlert; // Reference to the TextAlert script
+    [SerializeField] private Door door; // Reference to the Door script
 
     // Update is called once per frame
     void Update()
@@ -43,6 +44,26 @@ public class PlayerInputs : MonoBehaviour
         
         // Check if the player releases the TAB key and reset the tabHoldTimer variable to 0 when they do
         if (Input.GetKeyUp(KeyCode.Tab)) tabHoldTimer = 0;
+
+        // ------------------------------
+        // E KEY - Handles multiple things:
+        // 1. Closing tutorials without leaving the bounds
+        // 2. Interacting with other game objects (doors, items, levers, etc...)
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // Check if a tutorial is open and delete them if so
+            if (tutorialController.tutorialActive)
+            {
+                tutorialController.DeleteTutorials();
+                return; // Early return to prevent any more code being ran.
+            }
+
+            // Check if the player is in range of a door
+            if (door.playerInRange == true)
+            {
+                door.StartOpening();
+            }
+        }
 
         // ------------------------------------------------
         // MOUSE INPUT - Handles player camera manipulation
