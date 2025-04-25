@@ -9,6 +9,8 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private bool isOpen = false; // Is the door open?
     [SerializeField] private float openAngle; // How far the the door should open (rotate)
     [SerializeField] private float openSpeed; // How fast the door should open
+    [SerializeField] private string interactionPrompt = "Interact"; // Variable to describe the action when interacting
+
 
     [Header("Script References")]
     [SerializeField] private PlayerInventory playerInventory; // Reference to the PlayerInventory script
@@ -18,6 +20,9 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (keyID == -1) isLocked = false;
     }
+
+    // Method that returns the value of the interactionPrompt variable
+    public string InteractionPrompt => interactionPrompt;
 
     // Method to set the value of isOpen to true and trigger the coroutine to open the door
     public void Interact()
