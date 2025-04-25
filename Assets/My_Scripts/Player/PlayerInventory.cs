@@ -11,9 +11,19 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item); // Adds a new item to the items list
     }
 
-    // Method to check if a player has an item or not, useful for checking if the player can open locked doors
-    public bool HasItem(Item item)
+    // Method to check if a player has an item or not based on ID value, useful for checking if the player can open locked doors
+    public bool HasItemByID(int id)
     {
-        return items.Contains(item); // Returns true if the item is found, false if it isn't
+        // Loop over each item in the list
+        foreach (Item item in items)
+        {
+            // Check the item's id against the provided id for each iteration and return true if it matches
+            if (item.itemID == id)
+            {
+                return true;
+            }
+        }
+
+        return false; // Return false otherwise
     }
 }
