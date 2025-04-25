@@ -123,4 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: NAME
   itemID: 0
+  interactionPrompt: Pick up
   playerInventory: {fileID: 0}

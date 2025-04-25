@@ -47,9 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
+  isLocked: 1
+  keyID: -1
   isOpen: 0
   openAngle: 125
   openSpeed: 1
+  interactionPrompt: Open
+  playerInventory: {fileID: 0}
 --- !u!65 &1699203110785908891
 BoxCollider:
   m_ObjectHideFlags: 0
