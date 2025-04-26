@@ -11,7 +11,6 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private float openSpeed; // How fast the door should open
     [SerializeField] private string interactionPrompt = "Interact"; // Variable to describe the action when interacting
 
-
     [Header("Script References")]
     [SerializeField] private PlayerInventory playerInventory; // Reference to the PlayerInventory script
 
