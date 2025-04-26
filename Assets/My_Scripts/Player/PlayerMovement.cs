@@ -3,12 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {    
     public Animator animator; 
-    public PlayerStamina playerStats; // Variable assigned to PlayerStamina script. Will be assigned in the inspection window
-    public PlayerHealth playerHealth; // Variable assigned to the PlayerHealth script. Assigned in the inspection window.
     public float movementSpeed; // Variable used to control how fast the player is. Assigned in the inspection window
     public bool invulnerabilityFramesActive = false; // Variable used to tell if the player should take damage when being hit.
     public Transform cameraTransform; // Variable assigned to the main cameras transform component, used to update camera position/rotation
-    public PlayerCamera playerCamera; // Variable assigned to the Player Camera script. Assigned in the inspection window
     public float rotationSpeed; // Vairiable used to control how fast the player model rotates. Assigned in the inspection window
     public bool allowInput = true; // Variable used to prevent input when the player is rolling
 
