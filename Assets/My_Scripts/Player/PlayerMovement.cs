@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {    
-    public Animator animator; 
     public float movementSpeed; // Variable used to control how fast the player is. Assigned in the inspection window
     public bool invulnerabilityFramesActive = false; // Variable used to tell if the player should take damage when being hit.
     public Transform cameraTransform; // Variable assigned to the main cameras transform component, used to update camera position/rotation
@@ -21,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerStamina playerStats; // Reference to the PlayerStamina script.
     [SerializeField] private PlayerHealth playerHealth; // Reference to the the PlayerHealth script.
     [SerializeField] private PlayerCamera playerCamera; // Reference to the the Player Camera script.
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(float verticalInput, float horizontalInput)
     {
         // Check if the player is dead and early return to prevent movement
-        if (animator.GetBool("isDead") == true) return;
+        if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Dead)) return;
 
         // Get both the vertical and horizontal input values if the allowInput variable is set to true.
         if (allowInput == true) 
@@ -57,22 +57,24 @@ public class PlayerMovement : MonoBehaviour
         Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeHorizonatalInput;
 
         // Move player forward while rolling and prevent any input while rolling
-        if (animator.GetBool("isRolling") == true) {
+        if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Rolling)) 
+        {
             transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self); // Move the player forward 1 unit on its local space
+            Debug.Log("Here is the issue!");
             return; // Early return to prevent any further inputs until the roll animation is over
         };
 
         // Update animation variable value
         if (verticalMovement != 0 || horizontalMovement != 0) {
-            SetAnimatorParameter("isRunning", true);
+            playerAnimController.SetAnimatorState(PlayerAnimationState.Running);
             transform.Translate(cameraRelativeMovement, Space.World);
 
             // Check if the space button has been pressed & the player has stamina available. Trigger a roll animation if so
             if (Input.GetKeyDown(KeyCode.Space) && playerStats.stamina > 0) {
                 playerStats.SpendStamina(25);
-                SetAnimatorParameter("isRolling", true);
+                playerAnimController.SetAnimatorState(PlayerAnimationState.Rolling);
             }
-        } else SetAnimatorParameter("isRunning", false);     
+        } else playerAnimController.SetAnimatorState(PlayerAnimationState.Idle);     
 
         // If the player is locked on to the enemy, rotate them to look at the enemy
         if (playerCamera.lockedOn == true)
@@ -116,12 +118,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Method to set animator controller parameters depending on supplied arguments
-    void SetAnimatorParameter(string paramName, bool value)
-    {
-        animator.SetBool(paramName, value);
-    }
-
     // Method used to set current player movement values to 0. Used during certain animations
     public void ResetMovementInputs()
     {
@@ -142,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     {
         allowInput = true; // Re-enable player inputs
         invulnerabilityFramesActive = false; // Make it so the player can take damage again
-        animator.SetBool("isRolling", false); // End the rolling animation 
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Idle);
     }
 
     // Method used to allow the player to smoothly climb up vertical game objects (small inclines)
