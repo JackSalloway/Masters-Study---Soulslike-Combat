@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
         if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Rolling)) 
         {
             transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.Self); // Move the player forward 1 unit on its local space
-            Debug.Log("Here is the issue!");
             return; // Early return to prevent any further inputs until the roll animation is over
         };
 
