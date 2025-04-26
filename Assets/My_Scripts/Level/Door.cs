@@ -54,6 +54,9 @@ public class Door : MonoBehaviour, IInteractable
         Quaternion targetRotation = Quaternion.Euler(0, openAngle, 0); // Declare targetRotation value of the door (only updates Y axis)
         float slerpProgress = 0f; // Variable used to track progress of Slerp and break the while loop
         
+        isOpen = true; // Set isOpen to true to prevent the door being opened again
+        interactionPrompt = null; // Set interactionPrompt to null to prevent the UI from appearing after the door is open
+
         // Rotate door while slerpProgress is less than 1f
         while (slerpProgress < 1f)
         {
@@ -61,8 +64,6 @@ public class Door : MonoBehaviour, IInteractable
             transform.localRotation = Quaternion.Slerp(startRotation, targetRotation, slerpProgress); // Linearly rotate door
             yield return null;
         }
-        isOpen = true; // Set isOpen to true to prevent the door being opened again
-        interactionPrompt = null; // Set interactionPrompt to null to prevent the UI from appearing after the door is open
     }
 
     // Change the state of playerInRange to true when the player enters the collider near the door
