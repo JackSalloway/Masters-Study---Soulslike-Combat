@@ -35,6 +35,9 @@ public class PlayerInteraction : MonoBehaviour
             // If interactable objects are found, test against the previous closestDistance value to find if a new interactable is closer
             if (interactable != null)
             {   
+                // Skip to the next interactable in the loop if the object is no longer interactable
+                if (interactable.InteractionPrompt == null) continue;
+
                 // Measure the distance between the player character and the interactable game object
                 float distance = Vector3.Distance(transform.position, collider.transform.position);
 

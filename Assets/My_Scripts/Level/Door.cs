@@ -62,6 +62,7 @@ public class Door : MonoBehaviour, IInteractable
             yield return null;
         }
         isOpen = true; // Set isOpen to true to prevent the door being opened again
+        interactionPrompt = null; // Set interactionPrompt to null to prevent the UI from appearing after the door is open
     }
 
     // Change the state of playerInRange to true when the player enters the collider near the door
