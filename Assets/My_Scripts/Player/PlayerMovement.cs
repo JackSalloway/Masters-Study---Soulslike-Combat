@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb; // Variable assigned to the player characters rigid body component
 
+    [Header("Script References")]
+    [SerializeField] private PlayerStamina playerStats; // Variable assigned to PlayerStamina script. Will be assigned in the inspection window
+    [SerializeField] private PlayerHealth playerHealth; // Variable assigned to the PlayerHealth script. Assigned in the inspection window.
+    [SerializeField] private PlayerCamera playerCamera; // Variable assigned to the Player Camera script. Assigned in the inspection window
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>(); // Assign rb variable to the player characters rigid body component when the script starts
