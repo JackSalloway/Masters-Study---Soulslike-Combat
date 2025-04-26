@@ -49,6 +49,8 @@ public class PlayerInputs : MonoBehaviour
         // E KEY - Handles multiple things:
         // 1. Closing tutorials without leaving the bounds
         // 2. Interacting with other game objects (doors, items, levers, etc...)
+        playerInteraction.UpdatePrompt(); // Always check for interactables
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Check if a tutorial is open and delete them if so
