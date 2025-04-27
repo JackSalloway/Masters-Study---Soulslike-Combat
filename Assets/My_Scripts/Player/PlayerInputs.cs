@@ -70,6 +70,13 @@ public class PlayerInputs : MonoBehaviour
         mouseY = Input.GetAxis("Mouse Y"); // Get Y axis input
         playerCamera.SetMouseInput(new Vector2(mouseX, mouseY)); // Call SetMouseInput method in PlayerCamera script
 
+        //
+        // MIDDLE MOUSE BUTTON - Handles locking on to enemies
+         if (Input.GetKeyDown(KeyCode.Mouse2)) 
+        {
+            playerCamera.lockedOn = !playerCamera.lockedOn; // Toggle the value of the lockedOn variable
+        }
+
         // -------------------------------------------
         // W, A, S, D KEYS - Handles player movement
         verticalInput = Input.GetAxis("Vertical");
