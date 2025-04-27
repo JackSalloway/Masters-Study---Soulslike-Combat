@@ -43,6 +43,22 @@ public class PlayerCamera : MonoBehaviour
         mouseInput = mouseDelta;
     }
 
+    // Method to be ran when locking onto an enemy
+    private void LockedCamera()
+    {
+        // Make the camera look at the enemy
+        transform.LookAt(enemy.transform.position);
+
+        // Set the desired offset from the player
+        Vector3 originalCameraOffset = new Vector3(0, 2, -3);
+
+        // Rotate the offset based on the player's rotation
+        Vector3 rotatedOffset = playerCharacter.transform.rotation * originalCameraOffset;
+
+        // Set the camera's position relative to the player's world position
+        transform.position = playerCharacter.transform.position + rotatedOffset;
+    }
+
     // Method to be ran when no enemy is being locked on
     private void FreeCamera()
     {
