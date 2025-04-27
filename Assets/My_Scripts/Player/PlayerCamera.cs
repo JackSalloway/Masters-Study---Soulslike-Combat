@@ -4,7 +4,6 @@ public class PlayerCamera : MonoBehaviour
 {
     // Public Variables
     public GameObject playerCharacter; // Variable to be assigned to the player characters model in the inspection window
-    public bool lockedOn = false; // Variable to decide if the camera should lock on to the enemy or not
 
     // Private Variables
     [SerializeField] private float mouseSensitivity; // Variable for storing how sensitive the mouse movement will be
@@ -32,14 +31,6 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lockedOn == true)
-        {
-            transform.LookAt(enemy.transform.position); // Target the enemy's position
-            Vector3 testOffset = new Vector3(0, 2, -3); // Original position of the camera related to the player game object
-            transform.position = playerCharacter.transform.position + testOffset; // Update camera position as the player moves
-            return; // Early return to prevent camera mouse movement
-        }
-
         // Assign mouse inputs for both x and y mouse axes
         float mouseY = mouseInput.y * mouseSensitivity * Time.deltaTime;
         float mouseX = mouseInput.x * mouseSensitivity * Time.deltaTime;
