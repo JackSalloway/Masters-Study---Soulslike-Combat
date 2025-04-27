@@ -15,30 +15,6 @@ public class PlayerEnemyDetection : MonoBehaviour
         CheckEnemies();
     }
 
-    // Method to detect enemies within the detectionRadius variable
-    public void DetectEnemies()
-    {
-        // Reset the value of the currentlyDetectedEnemies list each time the method is called
-        currentlyDetectedEnemies.Clear();
-
-        // Create an array of colliders within the detection radius range around the player
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
-
-        // Loop over each colliders found 
-        foreach(var collider in colliders)
-        {   
-            // Check for the "Enemy" tag on the collider
-            if (collider.CompareTag("Enemy"))
-            {   
-                // Declare new variable set to the colliders gameObject property
-                GameObject enemy = collider.gameObject;
-                
-                // If the enemy isn't already in the current list, add it
-                if (!currentlyDetectedEnemies.Contains(enemy)) currentlyDetectedEnemies.Add(enemy);                
-            };
-        }
-    }
-
     // Method to check if enemies are still present
     public void CheckEnemies()
     {
