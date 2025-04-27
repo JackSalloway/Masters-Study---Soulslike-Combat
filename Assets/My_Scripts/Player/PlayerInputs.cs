@@ -22,6 +22,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private PlayerAttack playerAttack; // Reference to the PlayerAttack script
     [SerializeField] private TextAlert textAlert; // Reference to the TextAlert script
     [SerializeField] private PlayerInteraction playerInteraction; // Reference to the PlayerInteraction script
+    [SerializeField] private PlayerEnemyDetection playerEnemyDetection; // Reference to the PlayerEnemyDetection script
 
     // Update is called once per frame
     void Update()
@@ -73,7 +74,8 @@ public class PlayerInputs : MonoBehaviour
         //
         // MIDDLE MOUSE BUTTON - Handles locking on to enemies
          if (Input.GetKeyDown(KeyCode.Mouse2)) 
-        {
+        {   
+            if (playerEnemyDetection.detectedEnemies.Count == 0) return; // Early return if no enemies detected
             playerCamera.lockedOn = !playerCamera.lockedOn; // Toggle the value of the lockedOn variable
         }
 

@@ -18,6 +18,9 @@ public class PlayerCamera : MonoBehaviour
     private Vector3 rotationSmoothVelocity; // Variable to be used to smooth the rotation of the camera, uses the ref keyword
     private Vector2 mouseInput; // Variable that stores mouse input as a Vector2 struct (x, y)
 
+    [Header("Script References")]
+    [SerializeField] private PlayerEnemyDetection playerEnemyDetection; // Reference to the PlayerEnemyDetection script
+
     // Start will be called once when the script is ran
     void Start()
     {
@@ -33,6 +36,9 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Set the value of lockedOn variable to equal false if no enemies are nearby to be locked onto
+        if (playerEnemyDetection.detectedEnemies.Count == 0) lockedOn = false;
+
         if (lockedOn == true) LockedCamera();
         else FreeCamera();
     }
