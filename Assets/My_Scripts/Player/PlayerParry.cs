@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class PlayerParry : MonoBehaviour
 {
-    public Animator animator; // Variable assigned to the player animator controller. Assigned in the inspection window
-    
-    [SerializeField] private PlayerMovement playerMovement; // Variable assigned to the PlayerMovement script component on the player game object.
+    [Header("Script References")]
+    [SerializeField] private PlayerMovement playerMovement; // Reference to the PlayerMovement script
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
 
     // Method to trigger the parry animation and effects. Called when the F key is pressed in the PlayerInputs script
     public void StartParry()
     {
-        animator.SetBool("isParrying", true); // Set the isParrying animator parameter to true
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Parry);
         playerMovement.allowInput = false; // Disable player movement inputs
         playerMovement.ResetMovementInputs(); // Reset veritcal and horizontal movement variables to prevent any residual movement
     }
@@ -18,6 +18,6 @@ public class PlayerParry : MonoBehaviour
     void EndParry()
     {
         playerMovement.allowInput = true; // Re-enable player movement inputs
-        animator.SetBool("isParrying", false); // Set the isParrying animator parameter to false
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Idle);
     }
 }

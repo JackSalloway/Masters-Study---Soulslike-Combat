@@ -6,15 +6,16 @@ public class PlayerHealth : MonoBehaviour
     public float health; // Basic player resource used for tracking if the player should be alive or not
     public bool playerIsDead = false; // Boolean used for tracking player death status
     public float flaskHealing = 30; // Variable for storing the amount the player can heal by
-    public Animator animator; // Variable assigned to the player animation controller. Assigned in the inspection window
-
+    
+    [Header("Script References")]
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
     
     // Update is called once per frame
     void Update()
     {
         // Check if the player is dead and trigger the death animation if so
         if (playerIsDead == true) {
-            animator.SetBool("isDead", true); // Trigger player death animation
+            playerAnimController.SetAnimatorState(PlayerAnimationState.Dead);
             return; // Early return to prevent any more code being exectued
         }
 

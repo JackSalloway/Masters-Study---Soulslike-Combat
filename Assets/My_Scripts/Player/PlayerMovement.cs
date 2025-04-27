@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
         // Check if the player is dead and early return to prevent movement
         if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Dead)) return;
 
+        // Check if the player is parrying and early return to prevent unwanted animator state updates
+        if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Parry)) return;        
+
         // Get both the vertical and horizontal input values if the allowInput variable is set to true.
         if (allowInput == true) 
         {

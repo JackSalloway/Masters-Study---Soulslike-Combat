@@ -7,6 +7,9 @@ public class WeaponDamage : MonoBehaviour
     [SerializeField] private EnemyStats enemy; // Variable assigned to the EnemyStats script component
     [SerializeField] private TextAlert alertText; // Variable assigned to the TMP object above the player character
 
+    [Header("Script References")]
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
+
     // OnTirggerEnter triggers when the object this code is assigned to collides with another collider
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +22,7 @@ public class WeaponDamage : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             // Check if the player is parrying
-            if (player.animator.GetBool("isParrying") == true) {
+            if (playerAnimController.GetAnimatorStateValue(PlayerAnimationState.Parry)) {
                 enemy.poise -= 1000; // Deal a very large amount of poise damage to the enemy
                 enemy.poiseBroken = true; // Set poiseBroken variable to true to start the timer for resetting poise
                 enemy.animator.SetBool("stanceBroken", true); // Trigger the stance broken animation
