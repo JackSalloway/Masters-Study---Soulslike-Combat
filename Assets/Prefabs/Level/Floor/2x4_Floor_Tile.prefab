@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7717117095223328066}
   - component: {fileID: 6943555119100686742}
   - component: {fileID: 1065524443119875875}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 2x4_Floor_Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

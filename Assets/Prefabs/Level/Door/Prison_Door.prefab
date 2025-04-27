@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4751779674653672129}
   - component: {fileID: 4465221887511688721}
   - component: {fileID: 7845418276016185421}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Prison_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}

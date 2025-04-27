@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3910801223862992777}
   - component: {fileID: 6570363287844141666}
   - component: {fileID: 4669203388417855577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 4x4_Ceiling_Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5054507808329051544}
   - component: {fileID: 2215020886664531040}
   - component: {fileID: 5818534360051874126}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tower_Step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
