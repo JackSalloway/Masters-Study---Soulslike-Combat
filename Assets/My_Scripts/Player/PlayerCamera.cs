@@ -5,7 +5,6 @@ public class PlayerCamera : MonoBehaviour
     // Public Variables
     public GameObject playerCharacter; // Variable to be assigned to the player characters model in the inspection window
     public bool lockedOn = false; // Variable to decide if the camera should lock on to the enemy or not
-    public GameObject enemy; // Variable assigned to the enemy game object. Assigned in the inspection window
 
     // Private Variables
     [SerializeField] private float mouseSensitivity; // Variable for storing how sensitive the mouse movement will be
