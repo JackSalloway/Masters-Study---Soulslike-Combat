@@ -6,6 +6,7 @@ public class PlayerEnemyDetection : MonoBehaviour
     public List<GameObject> detectedEnemies = new List<GameObject>(); // List to store the enemies within radius of the player
 
     [SerializeField] private float detectionRadius; // Radius of the physics sphere around the player
+    [SerializeField] private LayerMask obstacleLayerMask; // Layer mask for obstacles (walls, doors, etc...)
 
     // Update is called once per frame
     void Update()
@@ -28,8 +29,18 @@ public class PlayerEnemyDetection : MonoBehaviour
             // Check for the "Enemy" tag on the collider
             if (collider.CompareTag("Enemy"))
             {   
-                // Add the enemy game object to the current list
-                detectedEnemies.Add(collider.gameObject);          
+                // Get direction from player to enemy
+                Vector3 directionToEnemy = collider.transform.position - transform.position;
+                
+                // Get distance to from player to enemy
+                float distanceToEnemy = Vector3.Distance(transform.position, collider.transform.position);
+
+                // Check if there is line of sight between player and enemy
+                if (!Physics.Raycast(transform.position, directionToEnemy, distanceToEnemy, obstacleLayerMask))
+                {
+                    // Add the enemy game object to the current list
+                    detectedEnemies.Add(collider.gameObject);       
+                }
             };
         }
     }
