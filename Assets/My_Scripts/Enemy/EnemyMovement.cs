@@ -37,9 +37,25 @@ public class EnemyMovement : MonoBehaviour
             // If distanceToPlayer is less than or equal to detectionRange varaible - trigger attack
             if (distanceToPlayer <= detectionRange)
             {
-                DisableMovement();
-                enemyAgent.velocity = Vector3.zero; // Remove any residual movement to prevent sliding
-                enemyAnimController.SetAnimatorState(EnemyAnimationState.Attack); // Set attack animation
+                // Check if the enemy is facing the player
+                Vector3 angleToPlayer = player.position - transform.position; // Get the rotation angle from enemy to player
+                angleToPlayer.y = 0; // Flatten the y value as it isn't important here
+                float acceptableAngle = Vector3.Angle(transform.forward, angleToPlayer); // Calculate remaining angle from enemy local forward to player position
+
+                // If roughly facing the player, trigger an attack
+                if (acceptableAngle < 30f)
+                {
+                    DisableMovement();
+                    enemyAgent.velocity = Vector3.zero; // Remove any residual movement to prevent sliding
+                    enemyAnimController.SetAnimatorState(EnemyAnimationState.Attack); // Set attack animation
+                }
+                else // Otherwise, rotate enemy to face player
+                {
+                    Quaternion lookRotation = Quaternion.LookRotation(angleToPlayer); // Get look rotation
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f ); // Slowly rotate the Enemy
+                }
+
+                
             }
             else if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) // Check if the current state is set to Running
             {
