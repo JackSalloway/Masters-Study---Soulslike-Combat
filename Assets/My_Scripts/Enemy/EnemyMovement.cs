@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Vector3 currentTarget; // Current destination for the agent to head towards
     [SerializeField] private float patrolTolerance = 1f; // Distance to begin turning to other patrol point (tolerance to avoid issues with precision)
     [SerializeField] private Transform player; // Refernce to the players transform, used to get the location of the player character
+    [SerializeField] private float detectionRange = 3f; // Variable to store the value that changes the animation to attack when close enough
 
     [Header("Script References")]
     [SerializeField] private DetectPlayer detectPlayer; // Reference to the DetectPlayer script
@@ -27,9 +28,21 @@ public class EnemyMovement : MonoBehaviour
     {
         // If the player is in the arena, move towards them. Otherwise, patrol between two points
         if (detectPlayer.playerInArena) 
-        {
-            enemyAgent.SetDestination(player.position); // Move towards player
-            enemyAnimController.SetAnimatorState(EnemyAnimationState.Running); // Set running animation
+        {   
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position); // Get distance to player
+
+            // If distanceToPlayer is less than or equal to detectionRange varaible - trigger attack
+            if (distanceToPlayer <= detectionRange)
+            {
+                enemyAgent.isStopped = true; // Stop the enemy from moving
+                enemyAgent.velocity = Vector3.zero; // Remove any residual movement to prevent sliding
+                enemyAnimController.SetAnimatorState(EnemyAnimationState.Attack); // Set attack animation
+            }
+            else // Keep moving towards the player
+            {
+                enemyAgent.SetDestination(player.position); // Move towards player
+                enemyAnimController.SetAnimatorState(EnemyAnimationState.Running); // Set running animation
+            }
         }
         else
         {
