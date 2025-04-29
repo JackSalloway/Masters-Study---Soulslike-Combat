@@ -49,14 +49,12 @@ public class PlayerAttack : MonoBehaviour
         isTyping = true; // Set isTyping to true to prevent this code being spammed
         damage = textAlert.actionType == "Parry" ? 150 : 40; // Set comment damage. Parry = 150. Dodge = 40
         playerInputs.preventInputs = true; // Prevent any inputs other than return being accessed in the PlayerInputs script
-        EnableSlowMotion();
     }
 
     // Method to end the attack process, resulting in damage dealt to the enemy. Triggered by pressing the return key
     public void EndVerbalAttack()
     {
         enemy.TakeDamage(damage, 0); // Deal damage to the enemy and 0 poise damage
-        DisableSlowMotion();
         ResetValues();
     }
 
@@ -73,11 +71,5 @@ public class PlayerAttack : MonoBehaviour
 
     // Method to clean up variable values when the typing interface closes
     private void CloseInterface() => inputField.gameObject.SetActive(false); // Disable the input field
-
-    // Method to slow game time down to half speed
-    private void EnableSlowMotion() => Time.timeScale = 0.5f;
-    
-    // Method to set game time back to default
-    private void DisableSlowMotion() => Time.timeScale = 1f;
 }
 
