@@ -25,10 +25,14 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private TextAlert textAlert; // Reference to the TextAlert script
     [SerializeField] private PlayerInteraction playerInteraction; // Reference to the PlayerInteraction script
     [SerializeField] private PlayerEnemyDetection playerEnemyDetection; // Reference to the PlayerEnemyDetection script
+    [SerializeField] private PlayerHealth playerHealth; // Reference to the PlayerHealth script
 
     // Update is called once per frame
     void Update()
     {   
+        // Prevent all inputs if the player is dead
+        if (playerHealth.playerIsDead) return;
+
         // -------------------------------------------------
         // RETURN (ENTER) KEY - Handles ending player attack
         if (Input.GetKeyDown(KeyCode.Return) && playerAttack.isTyping == true) playerAttack.EndVerbalAttack();
