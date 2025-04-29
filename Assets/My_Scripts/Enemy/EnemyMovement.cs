@@ -45,6 +45,12 @@ public class EnemyMovement : MonoBehaviour
             // If distanceToPlayer is less than or equal to detectionRange varaible - trigger attack
             if (distanceToPlayer <= detectionRange)
             {
+                // Check if the player is Stunned and early return if so 
+                if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Stunned)) return;
+
+                // Check if the player is staggered and early return if so
+                if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Staggered)) return;
+
                 // Check if the enemy is facing the player
                 Vector3 angleToPlayer = player.position - transform.position; // Get the rotation angle from enemy to player
                 angleToPlayer.y = 0; // Flatten the y value as it isn't important here
