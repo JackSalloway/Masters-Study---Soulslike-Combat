@@ -27,13 +27,6 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Disable any movement if the enemy is dead
-        if (enemyStats.isDead)
-        {
-            DisableMovement();
-            return; // Early return to prevent any more code being ran
-        }
-
         // Ensure the enemy is able to move if the running animation is playing
         if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) EnableMovement();
 
@@ -45,12 +38,6 @@ public class EnemyMovement : MonoBehaviour
             // If distanceToPlayer is less than or equal to detectionRange varaible - trigger attack
             if (distanceToPlayer <= detectionRange)
             {
-                // Check if the player is Stunned and early return if so 
-                if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Stunned)) return;
-
-                // Check if the player is staggered and early return if so
-                if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Staggered)) return;
-
                 // Check if the enemy is facing the player
                 Vector3 angleToPlayer = player.position - transform.position; // Get the rotation angle from enemy to player
                 angleToPlayer.y = 0; // Flatten the y value as it isn't important here
