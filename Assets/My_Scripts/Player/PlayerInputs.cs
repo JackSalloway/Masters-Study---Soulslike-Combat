@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerInputs : MonoBehaviour
 {
+    public bool preventInputs = false; // Variable used to prevent inputs when the player is typing (attacking)
+
     [Header("Mouse Input Values")]
     private float mouseX; // Variable to store mouse X axis movement
     private float mouseY; // Variable to store mouse Y axis movement
@@ -27,6 +29,13 @@ public class PlayerInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        // -------------------------------------------------
+        // RETURN (ENTER) KEY - Handles ending player attack
+        if (Input.GetKeyDown(KeyCode.Return) && playerAttack.isTyping == true) playerAttack.EndVerbalAttack();
+
+        // Prevent any input listed below if the player is typing
+        if (preventInputs) return;
+
         // --------------------------------------------------------------------
         // TAB KEY - Handles toggling tutorial between small and large versions
         if (Input.GetKey(KeyCode.Tab))
@@ -96,9 +105,5 @@ public class PlayerInputs : MonoBehaviour
             if (textAlert.actionType == "") return; // Early return if the player has yet to perform a successful dodge or parry
             playerAttack.StartVerbalAttack();
         }
-
-        // -------------------------------------------------
-        // RETURN (ENTER) KEY - Handles ending player attack
-        if (Input.GetKeyDown(KeyCode.Return) && playerAttack.isTyping == true) playerAttack.EndVerbalAttack();
     }
 }

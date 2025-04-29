@@ -11,6 +11,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private EnemyStats enemy; // Variable assigned to the EnemyStats script component
     private float damage; // Variable used to set the amount of damage the comment will deal
 
+    [Header("Script References")]
+    [SerializeField] private PlayerInputs playerInputs; // Reference to the PlayerInputs script
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
+
     void Start()
     {
         inputField.gameObject.SetActive(false); // Disable the input field when the game starts
@@ -25,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
         playerMovement.ResetMovementInputs(); // Reset vertical and horizontal movement values to remove any residual movement
         isTyping = true; // Set isTyping to true to prevent this code being spammed
         damage = textAlert.actionType == "Parry" ? 150 : 40; // Set comment damage. Parry = 150. Dodge = 40
+        playerInputs.preventInputs = true; // Prevent any inputs other than return being accessed in the PlayerInputs script
     }
 
     // Method to end the attack process, resulting in damage dealt to the enemy. Triggered by pressing the return key
@@ -36,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
         isTyping = false; // set isTyping to false to allow the player to attack again after
         damage = 0; // Set the damage back to 0 ready for the next attack
         inputField.text = ""; // Set the input field text value to an empty string for the next attack
+        playerInputs.preventInputs = false; // Re-enable all player inputs found in the PlayerInputs script
     }
 }
 
