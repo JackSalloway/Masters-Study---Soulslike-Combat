@@ -41,10 +41,9 @@ public class EnemyMovement : MonoBehaviour
                 enemyAgent.velocity = Vector3.zero; // Remove any residual movement to prevent sliding
                 enemyAnimController.SetAnimatorState(EnemyAnimationState.Attack); // Set attack animation
             }
-            else // Keep moving towards the player
+            else if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) // Check if the current state is set to Running
             {
                 enemyAgent.SetDestination(player.position); // Move towards player
-                enemyAnimController.SetAnimatorState(EnemyAnimationState.Running); // Set running animation
             }
         }
         else
