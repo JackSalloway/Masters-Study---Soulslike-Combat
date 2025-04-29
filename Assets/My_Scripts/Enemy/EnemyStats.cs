@@ -8,13 +8,15 @@ public class EnemyStats : MonoBehaviour
     public float timeSinceLastHit = 0; // Variable assigned to keep track since the enemy was last hit.
     public float poiseResetTimer = 0; // Variable used to keep the enemy's poise broken until it hits 1.5 seconds
     public bool isDead = false; // Variable assigned to the enemies life status
-    public Animator animator; // Variable assigned to the enemy animator controller. Assigned in the inspection window
+    
+    [Header("Script References")]
+    [SerializeField] private EnemyAnimationController enemyAnimController; // Reference to the EnemyAnimationController script
 
     void Update()
     {
         // Check if the enemy is dead and trigger the death anim + prevent any code being executed if so
         if (isDead == true) {
-            animator.SetBool("isDead", true); // Trigger the death animation
+            enemyAnimController.SetAnimatorState(EnemyAnimationState.Dead); // Set dead animation
             return; // Early return to prevent more code being ran
         }
 
@@ -44,21 +46,20 @@ public class EnemyStats : MonoBehaviour
         // Check if the poise is at 0, trigger stagger animation if it isnt and stance broken if it is
         if (poise <= 0) {
             poiseBroken = true; // Set poiseBroken variable to true
-            animator.SetBool("stanceBroken", true); // Trigger stance broken animation
-        } else animator.SetBool("isStaggered", true);// Trigger stagger animation
-        
+            enemyAnimController.SetAnimatorState(EnemyAnimationState.Stunned); // Set stunned animation
+        } else enemyAnimController.SetAnimatorState(EnemyAnimationState.Staggered); // Set staggered animation
         // Check if the enemy is dead or not
         if (health <= 0) isDead = true;
     }
 
     // Method to be called at the end of the stagger animation to reset the animator controller isStaggered boolean to false
-    void ResetStaggerAnim() {
-        animator.SetBool("isStaggered", false);
-    } 
+    // void ResetStaggerAnim() {
+    //     animator.SetBool("isStaggered", false);
+    // } 
 
     // Method to be called at the end of the stance broken animation to reset the animator controller stanceBroken boolean to false;
-    void ResetStanceBrokeAnim()
-    {
-        animator.SetBool("stanceBroken", false);
-    }
+    // void ResetStanceBrokeAnim()
+    // {
+    //     animator.SetBool("stanceBroken", false);
+    // }
 }

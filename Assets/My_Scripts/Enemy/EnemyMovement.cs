@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Script References")]
     [SerializeField] private DetectPlayer detectPlayer; // Reference to the DetectPlayer script
     [SerializeField] private EnemyAnimationController enemyAnimController; // Reference to the EnemyAnimationController scipt
+    [SerializeField] private EnemyStats enemyStats; // Reference to the EnemyStats script
 
     // Set patrol variable values when the script starts
     void Awake()
@@ -26,6 +27,13 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Disable any movement if the enemy is dead
+        if (enemyStats.isDead)
+        {
+            DisableMovement();
+            return; // Early return to prevent any more code being ran
+        }
+
         // Ensure the enemy is able to move if the running animation is playing
         if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) EnableMovement();
 
