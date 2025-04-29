@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
             // If distanceToPlayer is less than or equal to detectionRange varaible - trigger attack
             if (distanceToPlayer <= detectionRange)
             {
-                enemyAgent.isStopped = true; // Stop the enemy from moving
+                DisableMovement();
                 enemyAgent.velocity = Vector3.zero; // Remove any residual movement to prevent sliding
                 enemyAnimController.SetAnimatorState(EnemyAnimationState.Attack); // Set attack animation
             }
@@ -49,6 +49,12 @@ public class EnemyMovement : MonoBehaviour
             Patrol();
         }
     }
+
+    // Method to re-enable movement after an animation that prevents it (like attack / stagger / stun)
+    public void EnableMovement() => enemyAgent.isStopped = false;
+
+    // Method to disable movement at the start of an animation that should prevnt it (attack / stagger / stun)
+    public void DisableMovement() => enemyAgent.isStopped = true;
 
     // Method to send the agent patrolling between two points
     private void Patrol()
