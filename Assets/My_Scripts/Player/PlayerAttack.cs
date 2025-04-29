@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
         if (playerHealth.playerIsDead)
         {   
             inputField.DeactivateInputField();
-            inputField.gameObject.SetActive(false); // Enable the input field
+            inputField.gameObject.SetActive(false); // Disable the input field
             return; // prevent any further code being ran
         }
     }
