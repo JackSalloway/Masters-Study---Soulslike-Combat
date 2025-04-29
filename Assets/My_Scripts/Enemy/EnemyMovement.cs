@@ -26,6 +26,9 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Ensure the enemy is able to move if the running animation is playing
+        if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) EnableMovement();
+
         // If the player is in the arena, move towards them. Otherwise, patrol between two points
         if (detectPlayer.playerInArena) 
         {   
