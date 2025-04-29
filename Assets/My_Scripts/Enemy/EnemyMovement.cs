@@ -54,7 +54,6 @@ public class EnemyMovement : MonoBehaviour
                     Quaternion lookRotation = Quaternion.LookRotation(angleToPlayer); // Get look rotation
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f ); // Slowly rotate the Enemy
                 }
-
                 
             }
             else if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) // Check if the current state is set to Running
