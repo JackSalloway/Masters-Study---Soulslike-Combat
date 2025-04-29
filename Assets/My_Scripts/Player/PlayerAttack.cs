@@ -77,8 +77,8 @@ public class PlayerAttack : MonoBehaviour
         DisableSlowMotion();
     }
 
-        // Method to slow game time down to half speed
-    private void EnableSlowMotion() => Time.timeScale = 0.5f;
+    // Method to slow game time down to half speed
+    private void EnableSlowMotion() => Time.timeScale = 0.3f;
     
     // Method to set game time back to default
     private void DisableSlowMotion() => Time.timeScale = 1f;
