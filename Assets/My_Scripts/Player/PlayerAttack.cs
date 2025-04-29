@@ -14,10 +14,22 @@ public class PlayerAttack : MonoBehaviour
     [Header("Script References")]
     [SerializeField] private PlayerInputs playerInputs; // Reference to the PlayerInputs script
     [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
+    [SerializeField] private PlayerHealth playerHealth; // Reference the the PlayerHealthScript
 
     void Start()
     {
         inputField.gameObject.SetActive(false); // Disable the input field when the game starts
+    }
+
+    private void Update()
+    {   
+        // Deactivate the input field if the player dies (cleanup)
+        if (playerHealth.playerIsDead)
+        {   
+            inputField.DeactivateInputField();
+            inputField.gameObject.SetActive(false); // Enable the input field
+            return; // prevent any further code being ran
+        }
     }
 
     // Method to start the attack process. Triggered by left clicking after a successful roll or parry
