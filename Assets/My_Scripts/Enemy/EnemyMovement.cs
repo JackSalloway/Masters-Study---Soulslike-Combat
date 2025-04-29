@@ -27,6 +27,15 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the enemy is dead/stunned/staggered and early return to prevent any movement
+        if (enemyStats.isDead ||
+            enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Stunned) ||
+            enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Staggered)) 
+        {
+            DisableMovement();
+            return; // Early return to prevent any more code being ran
+        }
+
         // Ensure the enemy is able to move if the running animation is playing
         if (enemyAnimController.GetAnimatorStateValue(EnemyAnimationState.Running)) EnableMovement();
 
