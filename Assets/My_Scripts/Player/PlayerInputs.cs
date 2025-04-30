@@ -4,6 +4,9 @@ public class PlayerInputs : MonoBehaviour
 {
     public bool preventInputs = false; // Variable used to prevent inputs when the player is typing (attacking)
     public bool gameStarted = false; // Variable to check if the player has pressed any key
+    
+    [SerializeField] private Rigidbody playerRb; // Reference to the player characters rigidbody component
+    [SerializeField] private Collider playerCollider; // Reference to the player characters collider
 
     [Header("Mouse Input Values")]
     private float mouseX; // Variable to store mouse X axis movement
@@ -134,5 +137,10 @@ public class PlayerInputs : MonoBehaviour
     }
 
     // Method to be called after the player has pressed any key and the player character is fully stood up (keyframe event on fauxsitting animation)
-    public void StartGame() => gameStarted = true;
+    public void StartGame()
+    {
+        gameStarted = true;
+        playerCollider.enabled = true;
+        playerRb.useGravity = true;
+    }
 }
