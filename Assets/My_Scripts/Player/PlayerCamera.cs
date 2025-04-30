@@ -62,7 +62,7 @@ public class PlayerCamera : MonoBehaviour
 
         // Set the camera rotation to always face the enemy that is locked on
         // Calculate the direction to the enemy
-        Vector3 directionToEnemy = enemy.transform.position - transform.position;
+        Vector3 directionToEnemy = playerEnemyDetection.detectedEnemies[0].transform.position - transform.position;
         // Make the camera look at the enemy
         Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
         // Keep X (and Z) rotation fixed
