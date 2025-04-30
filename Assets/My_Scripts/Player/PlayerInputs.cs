@@ -109,5 +109,12 @@ public class PlayerInputs : MonoBehaviour
             if (textAlert.actionType == "") return; // Early return if the player has yet to perform a successful dodge or parry
             playerAttack.StartVerbalAttack();
         }
+
+        // ------------------------------
+        // B KEY - Handles player healing
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            playerHealth.HealPlayer(30f);
+        }
     }
 }

@@ -18,13 +18,6 @@ public class PlayerHealth : MonoBehaviour
             playerAnimController.SetAnimatorState(PlayerAnimationState.Dead);
             return; // Early return to prevent any more code being exectued
         }
-
-        // Simulate the player using a healing item to restore health
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("B key pressed, healing player by 30.");
-            HealPlayer(flaskHealing);
-        }
     }
 
     // Method to damage the player for a specific amount
