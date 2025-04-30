@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CreateTutorial : MonoBehaviour
 {
+    private bool alreadySeen; // Variable used to prevent the tutorial from spawning again if the player re-enters its bounds
     [SerializeField] private TuitionData tuitionData; // Variable assigned to the TuitionData script component. 
 
     // Variables used to store the hierarchy path of each UI game object relevant to the TutorialTriggers parent object
@@ -23,6 +24,8 @@ public class CreateTutorial : MonoBehaviour
     // Will be called when the player enters a tutorial trigger box
     private void OnTriggerEnter(Collider other)
     {
+        if (alreadySeen) return; // Prevent the tutorial from spawning if it has already spawned once
+
         // Check if the player has entered the collider and call the SpawnTutorial method
         if (other.CompareTag("Player"))
         {
@@ -39,6 +42,8 @@ public class CreateTutorial : MonoBehaviour
             tuitionData.SetLargeTutorialTextValue(extraDescriptionHierarchy, extraDescriptionText); // Set extra description value
             tuitionData.SetLargeTutorialTextValue(optionsHierarchy, largeOptionsText); // Set options value
             tuitionData.SetVideoClip(videoClipPath);
+
+            alreadySeen = true;
         }
     }
 }
