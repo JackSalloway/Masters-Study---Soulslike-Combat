@@ -57,7 +57,6 @@ public class PlayerAttack : MonoBehaviour
     public void EndVerbalAttack()
     {
         enemy.TakeDamage(damage, 0); // Deal damage to the enemy and 0 poise damage
-        playerAnimController.SetAnimatorState(PlayerAnimationState.Idle); // Set the animation to Idle
         ResetValues();
     }
 
@@ -69,6 +68,7 @@ public class PlayerAttack : MonoBehaviour
         damage = 0; // Set the damage back to 0 ready for the next attack
         inputField.text = ""; // Set the input field text value to an empty string for the next attack
         playerInputs.preventInputs = false; // Re-enable all player inputs found in the PlayerInputs script
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Idle); // Set the animation to Idle
         CloseInterface(); // Call CloseInterface Method
     }
 
