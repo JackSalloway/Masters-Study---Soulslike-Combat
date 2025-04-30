@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
     public bool preventInputs = false; // Variable used to prevent inputs when the player is typing (attacking)
+    public bool gameStarted = false; // Variable to check if the player has pressed any key
 
     [Header("Mouse Input Values")]
     private float mouseX; // Variable to store mouse X axis movement
@@ -26,12 +27,26 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction; // Reference to the PlayerInteraction script
     [SerializeField] private PlayerEnemyDetection playerEnemyDetection; // Reference to the PlayerEnemyDetection script
     [SerializeField] private PlayerHealth playerHealth; // Reference to the PlayerHealth script
+    [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController
+
+    void Awake()
+    {
+        playerAnimController.animator.speed = 0; // Set the animator controller speed to 0 when the game starts
+    }
 
     // Update is called once per frame
     void Update()
     {   
         // Prevent all inputs if the player is dead
         if (playerHealth.playerIsDead) return;
+
+        // Prevent all inputs until player has stood up from fake sitting animation
+        if (!gameStarted)
+        {   
+            // Set the animator speed to 1 (back to default) when any key is pressed.
+            if (Input.anyKeyDown) playerAnimController.animator.speed = 1;         
+            return; // Prevent any other inputs being read until the player has stood up
+        }
 
         // -------------------------------------------------
         // RETURN (ENTER) KEY - Handles ending player attack
@@ -117,4 +132,7 @@ public class PlayerInputs : MonoBehaviour
             playerHealth.HealPlayer(30f);
         }
     }
+
+    // Method to be called after the player has pressed any key and the player character is fully stood up (keyframe event on fauxsitting animation)
+    public void StartGame() => gameStarted = true;
 }
