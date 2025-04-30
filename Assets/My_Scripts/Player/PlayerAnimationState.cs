@@ -4,5 +4,6 @@ public enum PlayerAnimationState
     Running = 1,
     Rolling = 2,
     Dead = 3,
-    Parry = 4
+    Parry = 4,
+    Typing = 5
 }
