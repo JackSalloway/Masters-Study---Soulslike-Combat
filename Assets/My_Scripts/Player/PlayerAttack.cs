@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
     // Method to start the attack process. Triggered by left clicking after a successful roll or parry
     public void StartVerbalAttack()
     {
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Typing); // Set the animation to the typing loop
         inputField.gameObject.SetActive(true); // Enable the input field
         inputField.ActivateInputField(); // Focus input field for typing
         playerMovement.allowInput = false; // Disable player movement inputs
@@ -56,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
     public void EndVerbalAttack()
     {
         enemy.TakeDamage(damage, 0); // Deal damage to the enemy and 0 poise damage
+        playerAnimController.SetAnimatorState(PlayerAnimationState.Idle); // Set the animation to Idle
         ResetValues();
     }
 
