@@ -8,6 +8,9 @@ public class TextAlert : MonoBehaviour
 
     private float textTimer = 0; // Variable used to reset the text value of the TMP object after 3 seconds
 
+    [Header("Script References")]
+    [SerializeField] private CombatTuitionData combatTutionData; // Reference the CombatTuitionData script
+
     void Update()
     {
         alertText.transform.forward = Camera.main.transform.forward; // Make the text rotate with the camera
@@ -22,6 +25,7 @@ public class TextAlert : MonoBehaviour
     {
         alertText.SetText("!"); // Set the text above the player characters head
         actionType = action; // Set the actionType variable to the action performed by the player
+        combatTutionData.playerAvoidedAttack = true; // Spawn the second combat tutorial
     }
 
     // Method for reseting variable values to their original values

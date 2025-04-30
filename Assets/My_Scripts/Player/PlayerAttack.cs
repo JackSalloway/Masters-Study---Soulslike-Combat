@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerAnimationController playerAnimController; // Reference to the PlayerAnimationController script
     [SerializeField] private PlayerHealth playerHealth; // Reference the the PlayerHealthScript
     [SerializeField] private PlayerStamina playerStamina; // Reference the the PlayerStamina Script
+    [SerializeField] private CombatTuitionData combatTutionData; // Reference the CombatTuitionData script
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class PlayerAttack : MonoBehaviour
     // Method to start the attack process. Triggered by left clicking after a successful roll or parry
     public void StartVerbalAttack()
     {
+        combatTutionData.playerSpawnedInterface = true; // If first time spawning the interface, spawn the last combat tutorial
         playerAnimController.SetAnimatorState(PlayerAnimationState.Typing); // Set the animation to the typing loop
         inputField.gameObject.SetActive(true); // Enable the input field
         targetWord = SetInputFieldPlaceholderValue(); // Set the placeholder text and targetWord variable
