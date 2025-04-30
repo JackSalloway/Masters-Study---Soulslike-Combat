@@ -121,5 +121,7 @@ public class CombatTuitionData : MonoBehaviour
         VideoPlayer videoPlayer = videoObject.GetComponent<VideoPlayer>();
 
         videoPlayer.clip = videoClip;
+        videoPlayer.isLooping = true;
+        videoPlayer.Play();
     }
 }
