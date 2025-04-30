@@ -32,8 +32,12 @@ public class PlayerAttack : MonoBehaviour
             return; // prevent any further code being ran
         }
 
-        // Slowly drain stamina while the player is typing (attacking)
-        if (isTyping) playerStamina.SpendStamina(staminaDrainRate);
+        // Slowly drain stamina while the player is typing and ensure attack animation is playing
+        if (isTyping)
+        {
+            playerStamina.SpendStamina(staminaDrainRate);
+            playerAnimController.SetAnimatorState(PlayerAnimationState.Typing); // Set the animation to the typing loop
+        }
 
         // If Player runs out of stamina, reset the interface for the next attack
         if (playerStamina.stamina <= 0) ResetValues();
