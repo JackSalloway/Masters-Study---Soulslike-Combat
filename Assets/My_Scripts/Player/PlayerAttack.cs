@@ -55,7 +55,6 @@ public class PlayerAttack : MonoBehaviour
         playerMovement.allowInput = false; // Disable player movement inputs
         playerMovement.ResetMovementInputs(); // Reset vertical and horizontal movement values to remove any residual movement
         isTyping = true; // Set isTyping to true to prevent this code being spammed
-        damage = textAlert.actionType == "Parry" ? 150 : 40; // Set comment damage. Parry = 150. Dodge = 40
         playerInputs.preventInputs = true; // Prevent any inputs other than return being accessed in the PlayerInputs script
         EnableSlowMotion();
     }
@@ -63,6 +62,7 @@ public class PlayerAttack : MonoBehaviour
     // Method to end the attack process, resulting in damage dealt to the enemy. Triggered by pressing the return key
     public void EndVerbalAttack()
     {
+        CalculateDamage(inputField.text); // Calculate how much damage should be dealt to the enemy
         enemy.TakeDamage(damage, 0); // Deal damage to the enemy and 0 poise damage
         ResetValues();
     }
@@ -74,6 +74,29 @@ public class PlayerAttack : MonoBehaviour
         TMP_Text placeholderText = inputField.placeholder as TMP_Text; // Get the placeholder value from the input field TMP object
         placeholderText.text = randomWord; // Assign the placeholder text value to equal the random word
         return randomWord; // Return the random word value (used to calculate the damage value for later)
+    }
+
+    // Calculate the amount of damage to deal based on typing accuracy
+    private void CalculateDamage(string playerInput)
+    {   
+        // Create a loop that runs for the length of the target string
+        for (int i = 0; i < targetWord.Length; i++)
+        {
+            // Check if the current index value exceeds the length of player input
+            if (i >= playerInput.Length) break; // Break out of the loop
+
+            char targetCharacter = targetWord[i]; // Get current character in target word (based on index of the loop)
+            char inputCharacter = playerInput[i]; // Get current character in player input word (based on index of the loop)
+
+            // Check if the two characters are the same
+            if (targetCharacter == inputCharacter) damage += 10; // Add 10 damage for each correct character
+        }
+
+        // Check if the length of the player input matches the length of the target word
+        if (targetWord.Length != playerInput.Length) damage *= 0.8f; // Set damage to 80% if input is not the same length
+
+        // Check if the action the player performed was a parry
+        if (textAlert.actionType == "Parry") damage *= 1.4f; // Add an extra 40% of damage if the player parried to deal damage
     }
 
     // Method to reset variable values for next attack
