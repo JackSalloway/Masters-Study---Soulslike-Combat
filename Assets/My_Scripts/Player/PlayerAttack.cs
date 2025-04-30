@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private EnemyStats enemy; // Variable assigned to the EnemyStats script component
     [SerializeField] private float staminaDrainRate; // Variable used to drain stamina while the typing interface is active
     private float damage; // Variable used to set the amount of damage the comment will deal
+    private string[] niceWords = {"Nice!", "Almost!", "Close!", "Not bad"}; // Variable to store a few nice words, used to check against player input to determine damage
+    private string targetWord; // Variable to store the current target word the player needs to match
 
     [Header("Script References")]
     [SerializeField] private PlayerInputs playerInputs; // Reference to the PlayerInputs script
@@ -48,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
     {
         playerAnimController.SetAnimatorState(PlayerAnimationState.Typing); // Set the animation to the typing loop
         inputField.gameObject.SetActive(true); // Enable the input field
+        targetWord = SetInputFieldPlaceholderValue(); // Set the placeholder text and targetWord variable
         inputField.ActivateInputField(); // Focus input field for typing
         playerMovement.allowInput = false; // Disable player movement inputs
         playerMovement.ResetMovementInputs(); // Reset vertical and horizontal movement values to remove any residual movement
@@ -62,6 +65,15 @@ public class PlayerAttack : MonoBehaviour
     {
         enemy.TakeDamage(damage, 0); // Deal damage to the enemy and 0 poise damage
         ResetValues();
+    }
+
+    // Method to set the input field placeholder value so the player has something to match their input to - returns the random string for calculating damage later
+    private string SetInputFieldPlaceholderValue()
+    {
+        string randomWord = niceWords[Random.Range(0, niceWords.Length)]; // Randomly select word from list
+        TMP_Text placeholderText = inputField.placeholder as TMP_Text; // Get the placeholder value from the input field TMP object
+        placeholderText.text = randomWord; // Assign the placeholder text value to equal the random word
+        return randomWord; // Return the random word value (used to calculate the damage value for later)
     }
 
     // Method to reset variable values for next attack
