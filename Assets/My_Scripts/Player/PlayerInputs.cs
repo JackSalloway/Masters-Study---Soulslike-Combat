@@ -130,10 +130,10 @@ public class PlayerInputs : MonoBehaviour
 
         // ------------------------------
         // B KEY - Handles player healing
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            playerHealth.HealPlayer(30f);
-        }
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     playerHealth.HealPlayer(30f);
+        // }
     }
 
     // Method to be called after the player has pressed any key and the player character is fully stood up (keyframe event on fauxsitting animation)
