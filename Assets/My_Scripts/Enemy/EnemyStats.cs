@@ -42,12 +42,7 @@ public class EnemyStats : MonoBehaviour
         health -= damage; // Reduce the enemies health by a set amount of damage
         poise -= poiseDamage; // Reduce the enemies poise by a set amount of poise damage
         timeSinceLastHit = 0; // Reset the timer as the enemy was just hit
-
-        // Check if the poise is at 0, trigger stagger animation if it isnt and stance broken if it is
-        if (poise <= 0) {
-            poiseBroken = true; // Set poiseBroken variable to true
-            enemyAnimController.SetAnimatorState(EnemyAnimationState.Stunned); // Set stunned animation
-        } else enemyAnimController.SetAnimatorState(EnemyAnimationState.Staggered); // Set staggered animation
+        enemyAnimController.SetAnimatorState(EnemyAnimationState.Staggered); // Set staggered animation
         // Check if the enemy is dead or not
         if (health <= 0) isDead = true;
     }
