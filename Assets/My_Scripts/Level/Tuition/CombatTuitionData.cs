@@ -45,7 +45,7 @@ public class CombatTuitionData : MonoBehaviour
     [SerializeField] private string videoThree;
     [SerializeField] private string extraThree;
 
-    [SerializeField] private GameObject combatTutorial; // Variable assigned to the newly instantiated combat tutorial
+    [SerializeField] public GameObject combatTutorial; // Variable assigned to the newly instantiated combat tutorial
 
     private void Update()
     {   

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     private float damage; // Variable used to set the amount of damage the comment will deal
     private string[] niceWords = {"Nice!", "Almost!", "Close!", "Not bad"}; // Variable to store a few nice words, used to check against player input to determine damage
     private string targetWord; // Variable to store the current target word the player needs to match
+    private string storedAction; // Variable to store the action type within this script (Allows for resetting original variable before attack commences)
 
     [Header("Script References")]
     [SerializeField] private PlayerInputs playerInputs; // Reference to the PlayerInputs script
@@ -35,6 +37,18 @@ public class PlayerAttack : MonoBehaviour
             return; // prevent any further code being ran
         }
 
+        // Prevent stamina draining when tutorial is active
+        if (combatTutionData.playerSpawnedInterface && combatTutionData.combatTutorial != null) staminaDrainRate = 0f; // prevent stamina drain while in tutorial
+        else staminaDrainRate = 0.01f;
+
+        // Unfocus input field when tutorial active
+        if (combatTutionData.playerSpawnedInterface && combatTutionData.combatTutorial != null) EventSystem.current.SetSelectedGameObject(null);
+        else if (inputField.gameObject) 
+        {
+            Debug.Log("In here");
+            EventSystem.current.SetSelectedGameObject(inputField.gameObject);
+        }
+
         // Slowly drain stamina while the player is typing and ensure attack animation is playing
         if (isTyping)
         {
@@ -50,6 +64,8 @@ public class PlayerAttack : MonoBehaviour
     public void StartVerbalAttack()
     {
         combatTutionData.playerSpawnedInterface = true; // If first time spawning the interface, spawn the last combat tutorial
+        storedAction = textAlert.actionType; // Store the action type
+        textAlert.ResetText();
         playerAnimController.SetAnimatorState(PlayerAnimationState.Typing); // Set the animation to the typing loop
         inputField.gameObject.SetActive(true); // Enable the input field
         targetWord = SetInputFieldPlaceholderValue(); // Set the placeholder text and targetWord variable

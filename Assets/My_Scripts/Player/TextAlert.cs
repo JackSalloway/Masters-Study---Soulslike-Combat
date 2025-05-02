@@ -29,7 +29,7 @@ public class TextAlert : MonoBehaviour
     }
 
     // Method for reseting variable values to their original values
-    private void ResetText() {
+    public void ResetText() {
         alertText.SetText(""); // Set the text value to an empty string
         actionType = ""; // Set the action type to null
         textTimer = 0; // Set the timer value back to zero
