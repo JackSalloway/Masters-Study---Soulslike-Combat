@@ -23,6 +23,7 @@ public class CombatTuitionData : MonoBehaviour
 
     // Variable values for 0th phase tutorial
     [Header("Phase One Values")]
+    [SerializeField] private float firstTutorialTimer = 0; // Variable to prevent the first tutorial spawning until the player has been in the arena for 1 second
     [SerializeField] private bool firstHasSpawned = false; // Variable used to track if this tutorial has spawned once already
     [SerializeField] private string titleOne;
     [SerializeField] private string shortOne;
@@ -60,8 +61,13 @@ public class CombatTuitionData : MonoBehaviour
         // When player enters the arena for the first time, spawn the first tutorial
         if (playerEnteredArena && !firstHasSpawned)
         {
-            SpawnCombatTutorial(titleOne, shortOne, videoOne, extraOne); // Instantiate first phase tutorial
-            firstHasSpawned = true; // Update firstHasSpawned variable to prevent it spawning again
+            // Start 1 second timer to allow player to land in the arena
+            if (firstTutorialTimer < 1) firstTutorialTimer += Time.deltaTime;
+            else
+            {
+                SpawnCombatTutorial(titleOne, shortOne, videoOne, extraOne); // Instantiate first phase tutorial
+                firstHasSpawned = true; // Update firstHasSpawned variable to prevent it spawning again
+            }
         }
 
         // When the player avoids an attack for the first time, spawn the second tutorial
