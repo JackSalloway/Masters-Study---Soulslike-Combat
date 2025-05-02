@@ -43,10 +43,10 @@ public class PlayerAttack : MonoBehaviour
 
         // Unfocus input field when tutorial active
         if (combatTutionData.playerSpawnedInterface && combatTutionData.combatTutorial != null) EventSystem.current.SetSelectedGameObject(null);
-        else if (inputField.gameObject) 
+        else if (inputField != null && inputField.gameObject.activeInHierarchy)
         {
-            Debug.Log("In here");
             EventSystem.current.SetSelectedGameObject(inputField.gameObject);
+            EnableSlowMotion();
         }
 
         // Slowly drain stamina while the player is typing and ensure attack animation is playing
