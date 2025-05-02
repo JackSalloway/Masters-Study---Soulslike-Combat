@@ -12,7 +12,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private EnemyStats enemy; // Variable assigned to the EnemyStats script component
     [SerializeField] private float staminaDrainRate; // Variable used to drain stamina while the typing interface is active
     private float damage; // Variable used to set the amount of damage the comment will deal
-    private string[] niceWords = {"Nice!", "Almost!", "Close!", "Not bad...", "Missed me!", "Missed Again!", "Nowhere near", "Another Miss!"}; // Variable to store a few nice words, used to check against player input to determine damage
+    private string[] niceWords = {"Nice one!", "Almost!", "Close!", "Not bad...", "Missed me!", 
+    "Missed Again!", "Not even close.", "Another Miss!", "Are you trying?", "Too easy."}; // Variable to store a few nice words, used to check against player input to determine damage
     private string targetWord; // Variable to store the current target word the player needs to match
     private string storedAction; // Variable to store the action type within this script (Allows for resetting original variable before attack commences)
 
